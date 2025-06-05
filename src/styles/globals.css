@@ -1,0 +1,23 @@
+html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background: url('../../public/bliss.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+.desktop {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
