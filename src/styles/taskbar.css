@@ -39,6 +39,7 @@
 }
 
 .start-button {
+    margin-right: 0.3rem;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -81,6 +82,62 @@
     padding: 2px;
 }
 
+
+.taskbar-button {
+    margin-left: 0.1rem;
+    color: white;
+    background:
+        linear-gradient(
+            to bottom,
+            #4b8cff 0%,
+            #3980F4 30%,
+            #2a6ad1 100%
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.25) 0%,
+            rgba(255, 255, 255, 0) 25%
+        ),
+        linear-gradient(
+            to top,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0) 25%
+        ) !important;
+    background-blend-mode: normal !important;
+    border-top: 1px solid #6b9eff !important;
+    box-shadow:
+        inset 0 1px 0 #8fb9ff,
+        inset 0 -1px 0 #1a5bbf !important;
+}
+
+.taskbar-button.active,
+.taskbar-button:active {
+    box-shadow:
+        inset -1px -1px #ffffff,
+        inset 1px 1px #0a0a0a,
+        inset -1px -1px #dfdfdf,
+        inset 2px 2px #808080 !important;
+    border-color: #0a0a0a #fff #fff #0a0a0a !important;
+    color: white;
+}
+
+.taskbar-button-content {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
+.taskbar-button-icon {
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.taskbar-button-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* Системный трей */
 .system-tray {
     display: flex;
@@ -105,7 +162,7 @@
     gap: 2px;
 }
 
-/* Часы */
+    /* Часы */
 .clock {
     color: white;
     font-size: 12px;

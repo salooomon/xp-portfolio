@@ -13,11 +13,9 @@ body {
 }
 
 .desktop {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 35px;
 }

@@ -1,106 +1,74 @@
-import { useState, useRef, useCallback } from "react";
-import Draggable from "react-draggable";
-import "xp.css/dist/XP.css";
+import React, { useRef } from 'react';
+import Draggable from 'react-draggable';
+import { windowsStore } from '../store/windowsStore.ts';
 
-type WindowWrapperProps = {
+import { useCenterPosition } from '../hooks/useCenterPosition';
+
+interface WindowWrapperProps {
+    id: string;
     title: string;
     children: React.ReactNode;
-    defaultPosition?: { x: number; y: number };
-    defaultSize?: { width: number; height: number };
-    onClose?: () => void;
-    className?: string;
-};
+    width?: number;
+    height?: number;
+}
 
-export const WindowWrapper = ({
-  title,
-  children,
-  defaultPosition = { x: 100, y: 100 },
-  defaultSize = { width: 400, height: 300 },
-  onClose,
-  className = "",
-}: WindowWrapperProps) => {
+export const WindowWrapper: React.FC<WindowWrapperProps> = ({
+    id,
+    title,
+    children,
+    width = 400,
+    height = 300
+}) => {
     const windowRef = useRef<HTMLDivElement>(null);
-    const [isMinimized, setIsMinimized] = useState(false);
-    const [isMaximized, setIsMaximized] = useState(false);
-    const [position, setPosition] = useState(defaultPosition);
-    const [size, setSize] = useState(defaultSize);
-    const [originalSize, setOriginalSize] = useState(defaultSize);
-    const [originalPosition, setOriginalPosition] = useState(defaultPosition);
+    const defaultPosition = useCenterPosition(width, height);
+    const {
+        windows,
+        activeWindow,
+        minimizeWindow,
+        closeWindow,
+        setActiveWindow
+    } = windowsStore();
 
-    const handleMaximize = useCallback(() => {
-        if (!isMaximized) {
-            // Сохраняем оригинальные размеры перед максимизацией
-            setOriginalSize(size);
-            setOriginalPosition(position);
+    const windowState = windows.find(w => w.id === id);
 
-            // Устанавливаем размеры на весь экран
-            setSize({
-                width: window.innerWidth,
-                height: window.innerHeight
-            });
-
-            // Позиционируем в верхний левый угол
-            setPosition({ x: 0, y: 0 });
-        } else {
-            // Восстанавливаем оригинальные размеры
-            setSize(originalSize);
-            setPosition(originalPosition);
-        }
-
-        setIsMaximized(!isMaximized);
-    }, [isMaximized, size, position, originalSize, originalPosition]);
-
-    const handleDrag = useCallback((e: any, data: { x: number; y: number }) => {
-        if (!isMaximized) {
-            setPosition({ x: data.x, y: data.y });
-        }
-    }, [isMaximized]);
-
-    const handleClose = useCallback(() => {
-        onClose?.();
-    }, [onClose]);
-
-    if (isMinimized) {
-        return (
-            <div className="taskbar-window" onClick={() => setIsMinimized(false)}>
-                {title}
-            </div>
-        );
-    }
+    if (!windowState || windowState.minimized) return null;
 
     return (
         <Draggable
             nodeRef={windowRef}
             handle=".title-bar"
-            position={position}
-            onDrag={handleDrag}
-            bounds={isMaximized ? { top: 0, left: 0 } : "parent"}
-            cancel=".title-bar-controls"
+            defaultPosition={defaultPosition}
+            bounds="parent"
+            onStart={() => setActiveWindow(id)}
         >
             <div
                 ref={windowRef}
-                className={`window ${isMaximized ? "maximized" : ""} ${className}`}
+                className={`window ${activeWindow === id ? 'active' : ''}`}
                 style={{
-                    width: `${size.width}px`,
-                    height: `${size.height}px`,
-                    position: "absolute",
-                    zIndex: 1000,
-                    maxWidth: isMaximized ? "100vw" : undefined,
-                    maxHeight: isMaximized ? "100vh" : undefined,
+                    zIndex: activeWindow === id ? 1000 : 999,
+                    position: 'absolute',
+                    width: '200px',
+                    height: '150px'
                 }}
+                onClick={() => setActiveWindow(id)}
             >
                 <div className="title-bar">
                     <div className="title-bar-text">{title}</div>
                     <div className="title-bar-controls">
                         <button
                             aria-label="Minimize"
-                            onClick={() => setIsMinimized(true)}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                minimizeWindow(id);
+                            }}
                         />
                         <button
-                            aria-label="Maximize"
-                            onClick={handleMaximize}
+                            aria-label="Close"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                closeWindow(id);
+                            }}
                         />
-                        <button aria-label="Close" onClick={handleClose} />
                     </div>
                 </div>
                 <div className="window-body">

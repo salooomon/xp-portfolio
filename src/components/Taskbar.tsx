@@ -1,11 +1,18 @@
 import { useState, useEffect } from 'react';
+import  React  from 'react';
 import 'xp.css/dist/XP.css';
 import '../styles/taskbar.css';
 
-export const Taskbar = () => {
-    const [time, setTime] = useState(new Date());
-    const [startMenuOpen, setStartMenuOpen] = useState(false);
+import { windowsStore } from '../store/windowsStore.ts';
 
+export const Taskbar: React.FC = () => {
+    const {
+        windows,
+        restoreWindow,
+        setActiveWindow
+    } = windowsStore();
+    console.log(windows)
+    const [time, setTime] = useState(new Date());
     useEffect(() => {
         const timer = setInterval(() => setTime(new Date()), 60000);
         return () => clearInterval(timer);
@@ -15,37 +22,50 @@ export const Taskbar = () => {
         <div className="taskbar">
             <button
                 className="start-button"
-                onClick={() => setStartMenuOpen(!startMenuOpen)}
             >
                 <img
-                    src="public/windows-logo-small.png"
+                    src="src/assets/icons/windows-logo-small.png"
                     alt="Windows Logo"
                     className="logo"
                 />
                 <span style={{marginRight: '5px'}}>ПУСК</span>
             </button>
 
-            {/* Область открытых окон */}
             <div className="taskbar-windows">
-                {/* Здесь будут отображаться открытые окна */}
+                {windows.map((window) => (
+
+                    <button
+                        key={window.id}
+                        className={`taskbar-button ${window.active ? 'active' : ''}`}
+                        onClick={() => window.minimized ? restoreWindow(window.id) : setActiveWindow(window.id)}
+                        aria-label={`Окно ${window.title}`}
+                    >
+                        <div className="taskbar-button-content">
+                            <img
+                                className="taskbar-button-icon"
+                                src={window.icon}
+                                alt=""
+                                width={16}
+                                height={16}
+                                loading="lazy"
+                            />
+                            <span className="taskbar-button-text">{window.title}</span>
+                        </div>
+                    </button>
+                ))}
             </div>
 
             <div className="system-tray">
                 <div className="tray-icons">
                     <img
-                        src="https://win98icons.alexmeub.com/icons/png/volume-3.png"
-                        alt="Volume"
-                        style={{ width: '16px', height: '16px' }}
-                    />
-                    <img
-                        src="https://win98icons.alexmeub.com/icons/png/network_normal_two-0.png"
-                        alt="Network"
-                        style={{ width: '16px', height: '16px' }}
+                        src="src/assets/icons-mini/ethernet-mini.ico"
+                        alt="ethernet"
+                        style={{width: '16px', height: '16px'}}
                     />
                 </div>
 
                 <div className="clock">
-                    {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    {time.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
                 </div>
             </div>
 
