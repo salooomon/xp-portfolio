@@ -1,43 +1,52 @@
 import { useState, useEffect } from 'react';
-import  React  from 'react';
+import React from 'react';
 import 'xp.css/dist/XP.css';
 import '../styles/taskbar.css';
-
-import { windowsStore } from '../store/windowsStore.ts';
+import { windowsStore } from '../store/windowsStore';
 
 export const Taskbar: React.FC = () => {
-    const {
-        windows,
-        restoreWindow,
-        setActiveWindow
-    } = windowsStore();
-    console.log(windows)
+    const { windows, adWindows, restoreWindow, setActiveWindow } = windowsStore();
     const [time, setTime] = useState(new Date());
+
     useEffect(() => {
         const timer = setInterval(() => setTime(new Date()), 60000);
         return () => clearInterval(timer);
     }, []);
 
+    const allWindows = [
+        ...windows,
+        ...adWindows.map(ad => ({
+            id: ad.id,
+            title: ad.title,
+            icon: ad.icon,
+            minimized: false,
+            active: false
+        }))
+    ];
+    const visibleWindows = allWindows.slice(0, 5);
     return (
         <div className="taskbar">
-            <button
-                className="start-button"
-            >
+            <button className="start-button">
                 <img
                     src="src/assets/icons/windows-logo-small.png"
                     alt="Windows Logo"
                     className="logo"
                 />
-                <span style={{marginRight: '5px'}}>ПУСК</span>
+                <span style={{ marginRight: '5px' }}>ПУСК</span>
             </button>
 
             <div className="taskbar-windows">
-                {windows.map((window) => (
-
+                {visibleWindows.map((window) => (
                     <button
                         key={window.id}
                         className={`taskbar-button ${window.active ? 'active' : ''}`}
-                        onClick={() => window.minimized ? restoreWindow(window.id) : setActiveWindow(window.id)}
+                        onClick={() => {
+                            if ('minimized' in window && window.minimized) {
+                                restoreWindow(window.id);
+                            } else {
+                                setActiveWindow(window.id);
+                            }
+                        }}
                         aria-label={`Окно ${window.title}`}
                     >
                         <div className="taskbar-button-content">
@@ -60,15 +69,14 @@ export const Taskbar: React.FC = () => {
                     <img
                         src="src/assets/icons-mini/ethernet-mini.ico"
                         alt="ethernet"
-                        style={{width: '16px', height: '16px'}}
+                        style={{ width: '16px', height: '16px' }}
                     />
                 </div>
 
                 <div className="clock">
-                    {time.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
+                    {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </div>
             </div>
-
         </div>
     );
 };

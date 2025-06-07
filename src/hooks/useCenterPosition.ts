@@ -1,17 +1,29 @@
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 
-export const useCenterPosition = (windowWidth: number, windowHeight: number) => {
-    return useMemo(() => {
-        if (typeof window === 'undefined') {
-            return { x: 100, y: 100 };
-        }
+export const useCenterPosition = (widthPercent: number, heightPercent: number) => {
+    const [position, setPosition] = useState({ x: 0, y: 0 });
 
-        const x = (window.innerWidth - windowWidth) / 2;
-        const y = (window.innerHeight - windowHeight) / 2;
+    const updatePosition = () => {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
 
-        return {
-            x: Math.max(0, x),
-            y: Math.max(0, y)
+        const width = (screenWidth * widthPercent) / 100;
+        const height = (screenHeight * heightPercent) / 100;
+
+        const x = (screenWidth - width) / 2;
+        const y = (screenHeight - height) / 2;
+
+        setPosition({ x, y });
+    };
+
+    useEffect(() => {
+        updatePosition();
+        window.addEventListener('resize', updatePosition);
+
+        return () => {
+            window.removeEventListener('resize', updatePosition);
         };
-    }, [windowWidth, windowHeight]);
+    }, [widthPercent, heightPercent]);
+
+    return position;
 };

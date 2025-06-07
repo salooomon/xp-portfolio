@@ -1,4 +1,14 @@
 import { create } from 'zustand';
+import React from "react";
+
+interface AdWindow {
+    id: string;
+    title: string;
+    content: React.ReactNode;
+    icon: string;
+    position: { x: number; y: number };
+    size: { width: number; height: number };
+}
 
 interface Window {
     id: string;
@@ -21,10 +31,15 @@ interface WindowStore {
     focusOrCenterWindow: (id: string) => void;
     centerWindow: (id: string) => void;
     getWindow: (id: string) => Window | undefined;
+    adWindows: AdWindow[];
+    openAdWindow: (config?: Partial<AdWindow>) => void;
+    closeAdWindow: (id: string) => void;
+    closeAllAds: () => void;
 }
 
 export const windowsStore = create<WindowStore>((set, get) => ({
     windows: [],
+    adWindows: [],
     activeWindow: null,
 
     openWindow: (id, title, icon, width = 400, height = 300) => {
@@ -94,24 +109,50 @@ export const windowsStore = create<WindowStore>((set, get) => ({
         }
     },
 
-    centerWindow: (id) => set((state) => {
-        const window = state.windows.find(w => w.id === id);
-        if (!window) return state;
+    centerWindow: (id) => {
+        const state = get();
+        const win = state.windows.find(w => w.id === id);
+        if (!win) return;
 
-        const { width, height } = window.size;
+        const { width, height } = win.size;
+
         const x = (window.innerWidth - width) / 2;
         const y = (window.innerHeight - height) / 2;
 
-        return {
+        set((state) => ({
             windows: state.windows.map(w =>
                 w.id === id
                     ? { ...w, position: { x, y } }
                     : w
             )
-        };
-    }),
+        }));
+    },
 
     getWindow: (id) => {
         return get().windows.find(w => w.id === id);
-    }
+    },
+    openAdWindow: (config = {}) => {
+        const defaultAd: AdWindow = {
+            id: `ad-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`,
+            title: config.title || 'Важное сообщение!',
+            content: config.content,
+            icon: config.icon || '/icons/warning.png',
+            position: config.position || {
+                x: Math.random() * (window.innerWidth - 400),
+                y: Math.random() * (window.innerHeight - 300),
+            },
+            size: config.size || { width: 400, height: 300 },
+        };
+
+        set((state) => ({
+            adWindows: [...state.adWindows, { ...defaultAd, ...config }],
+            activeWindow: defaultAd.id
+        }));
+    },
+
+    closeAdWindow: (id) => set((state) => ({
+        adWindows: state.adWindows.filter(ad => ad.id !== id)
+    })),
+
+    closeAllAds: () => set({ adWindows: [] })
 }));

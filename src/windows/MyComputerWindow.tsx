@@ -5,8 +5,9 @@ export const MyComputer = () => {
         <WindowWrapper
             title="Мои компютер"
             id="my-computer"
-            width={200}
-            height={150}
+            icon="src/assets/icons-mini/my-computer-mini.ico"
+            width={20}
+            height={15}
         >
             <p>Обо мне</p>
             <ul>

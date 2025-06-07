@@ -1,4 +1,4 @@
-import { windowsStore } from '../store/windowsStore.ts';
+import { windowsStore } from '../store/windowsStore';
 import '../styles/desctop-icon.css';
 
 interface IProps {

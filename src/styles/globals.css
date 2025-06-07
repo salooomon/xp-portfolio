@@ -3,13 +3,16 @@ html, body, #root {
     padding: 0;
     height: 100%;
     width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    touch-action: manipulation;
+    -webkit-overflow-scrolling: touch;
 }
 
 body {
     background: url('../../public/bliss.jpg') no-repeat center center fixed;
     background-size: cover;
-    font-family: sans-serif;
-    overflow: hidden;
+    font-family: "Microsoft Sans Serif", "Tahoma", sans-serif;
 }
 
 .desktop {
@@ -17,5 +20,56 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 35px;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.title-bar-content {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    min-width: 0;
+}
+
+.title-bar-icon {
+    flex-shrink: 0;
+    object-fit: contain;
+    width: 17px;
+    height: 17px;
+}
+
+.title-bar-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.window {
+    position: absolute;
+    max-width: 600px;
+    max-height: 500px;
+    min-width: 280px;
+    min-height: 200px;
+}
+
+@media (max-width: 768px) {
+    .window {
+
+        max-width: 100vw;
+        max-height: 90vh;
+    }
+
+    .window-body {
+        padding: 0.5rem;
+    }
+
+    .title-bar-text {
+        font-size: 14px;
+    }
+
+    .title-bar-controls button {
+        width: 24px;
+        height: 24px;
+    }
 }
