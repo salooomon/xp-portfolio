@@ -1,0 +1,68 @@
+.xp-recycle-bin {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.xp-bin-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    background: #f5f5f5;
+    border: 1px solid #d4d0c8;
+    border-radius: 3px;
+}
+
+.xp-bin-icon {
+    width: 64px;
+    height: 64px;
+}
+
+.xp-bin-stats {
+    font-size: 14px;
+    color: #333;
+}
+
+.xp-bin-stats p {
+    margin: 5px 0;
+}
+
+.xp-bin-grid-container {
+    width: 100%;
+    overflow: auto;
+}
+
+.xp-bin-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 10px 0;
+    min-width: min-content;
+}
+
+.xp-bin-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    width: 100px;
+}
+
+.xp-bin-item:hover {
+    background: #f0f7ff;
+    border-color: #b8d6f9;
+}
+
+.xp-bin-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.xp-button-wide {
+    padding: 3px 15px;
+}

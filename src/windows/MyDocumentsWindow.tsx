@@ -1,5 +1,5 @@
 import {WindowWrapper} from "../components/WindowWrapper.tsx";
-
+import '../styles/my-documents.css'
 export const MyDocuments = () => {
     const projects = [
         {
