@@ -11,13 +11,15 @@ import {RecycleBin} from "./windows/RecycleBinWindow.tsx";
 import { windowsStore } from './store/windowsStore';
 import { AdWindow } from './components/AdWindow.tsx';
 import { useAdBlaster } from './hooks/useAdBlaster.tsx';
+import { LoadingScreen } from "./windows/LoadingScreen.tsx";
+import {CRTEffect} from "./components/CRTEffect.tsx";
 
 export default function App() {
     const { adWindows } = windowsStore();
     const [virusActive, setVirusActive] = useState(false);
-
+    const [isLoading, setIsLoading] = useState(true);
     // Интервал появления рекламы (25000 мс = 25 секунд)
-    useAdBlaster(virusActive, 25000);
+    useAdBlaster(virusActive, 250000);
 
     useEffect(() => {
         setVirusActive(true);
@@ -26,28 +28,35 @@ export default function App() {
 
     return (
         <>
-            <Desktop/>
-            <Taskbar/>
+            <CRTEffect/>
+            {isLoading ? (
+                <LoadingScreen onComplete={() => setIsLoading(false)} />
+            ) : (
+                <>
+                    <Desktop/>
+                    <Taskbar/>
 
-            <MyComputer />
-            <MyDocuments />
-            <RecycleBin />
-            {adWindows.map(ad => (
-                <AdWindow key={ad.id} id={ad.id} />
-            ))}
+                    <MyComputer />
+                    <MyDocuments />
+                    <RecycleBin />
+                    {adWindows.map(ad => (
+                        <AdWindow key={ad.id} id={ad.id} />
+                    ))}
 
-            <button
-                style={{
-                    position: 'fixed',
-                    bottom: '60px',
-                    right: '10px',
-                    zIndex: 2000,
-                    padding: '5px 10px'
-                }}
-                onClick={() => setVirusActive(!virusActive)}
-            >
-                {virusActive ? 'Остановить вирус' : 'Запустить вирус'}
-            </button>
+                    <button
+                        style={{
+                            position: 'fixed',
+                            bottom: '60px',
+                            right: '10px',
+                            zIndex: 2000,
+                            padding: '5px 10px'
+                        }}
+                        onClick={() => setVirusActive(!virusActive)}
+                    >
+                        {virusActive ? 'Остановить вирус' : 'Запустить вирус'}
+                    </button>
+                </>
+            )}
         </>
     );
 }

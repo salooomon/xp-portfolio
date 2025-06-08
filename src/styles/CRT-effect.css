@@ -1,0 +1,82 @@
+:root {
+    --crt-flicker-intensity: 0.02;       /* Интенсивность мерцания (0-0.1) */
+    --crt-flicker-speed: 0.15s;          /* Скорость мерцания */
+    --crt-scanline-opacity: 0.04;        /* Прозрачность scanlines */
+    --crt-brightness: 1.1;               /* Яркость экрана */
+    --crt-contrast: 1.2;                 /* Контрастность */
+    --crt-saturation: 1.3;               /* Насыщенность */
+}
+
+.crt-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.02);
+    animation: flicker var(--crt-flicker-speed) infinite;
+}
+
+.crt-effect::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+        rgba(0, 0, 0, var(--crt-scanline-opacity)) 50%,
+        rgba(0, 0, 0, calc(var(--crt-scanline-opacity) * 2)) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 1;
+}
+
+.crt-effect::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0.01),
+        rgba(0, 255, 0, 0.02),
+        rgba(0, 0, 255, 0.01)
+    );
+    z-index: 2;
+}
+
+@keyframes flicker {
+    0% { opacity: 0.98; }
+    20% { opacity: 0.99; }
+    40% { opacity: 1; }
+    60% { opacity: 0.98; }
+    80% { opacity: 0.97; }
+    100% { opacity: 0.99; }
+}
+
+.crt-enabled {
+    filter:
+    brightness(var(--crt-brightness))
+    contrast(var(--crt-contrast))
+    saturate(var(--crt-saturation));
+}
+
+.crt-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    background: #222;
+    color: #0f0;
+    border: 1px solid #0f0;
+    padding: 5px 10px;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+}

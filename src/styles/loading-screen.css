@@ -1,0 +1,156 @@
+.windows-xp-loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    font-family: "Microsoft Sans Serif", "Tahoma", sans-serif;
+}
+
+.container{
+    width: 150px;
+    height: 10px;
+    border: 2px solid #b2b2b2;
+    border-radius: 7px;
+    margin: 0 auto;
+    padding: 2px 1px;
+    overflow: hidden;
+    font-size: 0;
+}
+
+.box{
+    width: 9px;
+    height: 100%;
+    background: linear-gradient(to bottom, #2838c7 0%,#5979ef 17%,#869ef3 32%,#869ef3 45%,#5979ef 59%,#2838c7 100%);
+    display: inline-block;
+    margin-right: 2px;
+    animation: loader 2s infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes loader{
+    0%{
+        transform: translate(-80px);
+    }
+    100%{
+        transform: translate(150px);
+    }
+}
+
+.loading-text {
+    width: 220px;
+    margin: 50px auto;
+    margin-bottom: 10px;
+}
+
+.loading-container {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    color: white;
+    margin: auto;
+    padding: 20px;
+}
+
+.windows-logo {
+    margin-bottom: 30px;
+}
+
+.windows-flag {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    perspective: 500px;
+}
+
+.window-pane {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    transform-origin: center;
+}
+
+.windows-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.5px;
+}
+.windows-title span {
+    font-size: 22px;
+    display: inline-block;
+    vertical-align: top;
+    color: #FF6821;
+    margin-top: -8px;
+}
+
+.copyright {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    opacity: 0.8;
+    margin-bottom: 30px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.progress-container {
+    width: 100%;
+    height: 22px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow:
+            inset 0 1px 3px rgba(0, 0, 0, 0.4),
+            0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .windows-title {
+        font-size: 1.2rem;
+    }
+
+    .copyright {
+        font-size: 0.7rem;
+    }
+
+    .windows-flag {
+        width: 80px;
+        height: 80px;
+    }
+
+    .window-pane {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .windows-title {
+        font-size: 1rem;
+    }
+
+    .copyright {
+        font-size: 0.6rem;
+    }
+
+    .windows-flag {
+        width: 60px;
+        height: 60px;
+    }
+
+    .window-pane {
+        width: 28px;
+        height: 28px;
+    }
+
+    .progress-container {
+        height: 18px;
+    }
+}
