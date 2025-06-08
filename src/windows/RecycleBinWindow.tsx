@@ -6,8 +6,6 @@ export const RecycleBin = () => {
             title="Корзина"
             id="recycle-bin"
             icon="src/assets/icons-mini/full-recycle-bin-mini.ico"
-            width={20}
-            height={25}
         >
             <ul>
                 <li>Элемент 1</li>

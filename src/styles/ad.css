@@ -1,3 +1,9 @@
+.window.ad-window {
+    min-width: 200px;
+    max-width: 400px;
+    width: auto !important;
+    height: auto !important;
+}
 
 .window.ad-window .title-bar {
     background: linear-gradient(to bottom, #ff4d4d, #cc0000);
@@ -8,10 +14,10 @@
     background-color: white;
 }
 
-.ad-content {
+.window.ad-window .window-body.ad-content {
     background-color: #ffe6e6;
     border: 1px solid #ff9999;
-    height: 100%;
+    padding: 10px;
     overflow: auto;
 }
 

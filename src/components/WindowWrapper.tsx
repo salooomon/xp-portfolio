@@ -1,16 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Draggable from 'react-draggable';
 import { windowsStore } from '../store/windowsStore';
-
-import { useCenterPosition } from '../hooks/useCenterPosition';
+import { useDynamicCenterPosition } from '../hooks/useDynamicCenterPosition';
 
 interface WindowWrapperProps {
     id: string;
     title: string;
     icon: string;
     children: React.ReactNode;
-    width?: number;
-    height?: number;
 }
 
 export const WindowWrapper: React.FC<WindowWrapperProps> = ({
@@ -18,11 +15,11 @@ export const WindowWrapper: React.FC<WindowWrapperProps> = ({
     title,
     children,
     icon,
-    width = 400,
-    height = 300
 }) => {
     const windowRef = useRef<HTMLDivElement>(null);
-    const defaultPosition = useCenterPosition(width, height);
+    const { position, updatePosition, handleDrag} = useDynamicCenterPosition();
+    const [isPositionCalculated, setIsPositionCalculated] = useState(false);
+
     const {
         windows,
         activeWindow,
@@ -33,24 +30,33 @@ export const WindowWrapper: React.FC<WindowWrapperProps> = ({
 
     const windowState = windows.find(w => w.id === id);
 
+    useEffect(() => {
+        if (windowRef.current && !isPositionCalculated) {
+            const width = windowRef.current.offsetWidth;
+            const height = windowRef.current.offsetHeight;
+            updatePosition(width, height);
+            setIsPositionCalculated(true);
+        }
+    }, [windowState?.minimized]);
+
     if (!windowState || windowState.minimized) return null;
-    console.log(children)
+
     return (
         <Draggable
             nodeRef={windowRef}
             handle=".title-bar"
             cancel=".title-bar-controls"
-            defaultPosition={defaultPosition}
+            position={position}
             bounds="parent"
             onStart={() => setActiveWindow(id)}
+            onDrag={handleDrag}
         >
             <div
                 ref={windowRef}
                 className={`window ${activeWindow === id ? 'active' : ''}`}
                 style={{
                     zIndex: activeWindow === id ? 1000 : 999,
-                    width: `${width}vw`,
-                    height: `${height}vh`,
+                    visibility: isPositionCalculated ? 'visible' : 'hidden'
                 }}
                 onClick={() => setActiveWindow(id)}
             >
@@ -63,7 +69,7 @@ export const WindowWrapper: React.FC<WindowWrapperProps> = ({
                                 alt=""
                                 style={{width: 16, height: 16, marginRight: 5}}
                             />
-                            <span >{title}</span>
+                            <span>{title}</span>
                         </div>
                     </div>
                     <div className="title-bar-controls">

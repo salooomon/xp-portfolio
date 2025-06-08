@@ -1,0 +1,94 @@
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.icon-spin {
+    display: inline-block;
+    perspective: 1000px;
+    vertical-align: middle;
+}
+
+.icon-spin .icon {
+    width: 17px;
+    height: 17px;
+    animation: icon-spin 3s linear infinite;
+    transform-style: preserve-3d;
+}
+
+@keyframes icon-spin {
+    0% {
+        transform: rotateY(0deg) translateZ(0);
+    }
+    25% {
+        transform: rotateY(90deg) translateZ(1px);
+    }
+    50% {
+        transform: rotateY(180deg) translateZ(0);
+    }
+    75% {
+        transform: rotateY(270deg) translateZ(1px);
+    }
+    100% {
+        transform: rotateY(360deg) translateZ(0);
+    }
+}
+
+/* Улучшенные стили для элементов дерева */
+.tree-view {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 12px;
+}
+
+.tree-view ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.tree-view li {
+    margin: 4px 0;
+    position: relative;
+    line-height: 1.4;
+}
+
+.tree-view details > summary {
+    cursor: pointer;
+    outline: none;
+    padding: 3px 5px;
+    border-radius: 3px;
+}
+
+.tree-view details > summary:hover {
+    background-color: #e1f0ff;
+}
+
+.tree-view details > summary::-webkit-details-marker {
+    display: none;
+}
+
+.tree-view details > summary:before {
+    content: "►";
+    font-size: 9px;
+    margin-right: 6px;
+    color: #316ac5;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.tree-view details[open] > summary:before {
+    transform: rotate(90deg);
+}
+
+/* Стили для иконок с текстом */
+.icon-item {
+    display: flex;
+    align-items: center;
+    padding: 2px 0;
+}
+
+/* Эффект выделения при наведении */
+.icon-item:hover {
+    background-color: rgba(0, 120, 215, 0.1);
+}

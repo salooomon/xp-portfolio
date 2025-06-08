@@ -6,8 +6,6 @@ export const MyDocuments = () => {
             title="Мои документы"
             id="my-documents"
             icon="src/assets/icons-mini/my-documents-mini.ico"
-            width={20}
-            height={15}
         >
             <p>Мои проекты</p>
             <ul>
