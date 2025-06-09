@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/easter-egg.css'
 export const LoveEasterEgg = () => {
     const [showAd, setShowAd] = useState(false);

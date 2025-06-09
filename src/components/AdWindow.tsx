@@ -11,7 +11,7 @@ export const AdWindow = ({ id }: { id: string }) => {
     } = windowsStore();
 
     const ad = adWindows.find(a => a.id === id);
-    const windowRef = useRef<HTMLDivElement>(null);
+    const windowRef = useRef<HTMLDivElement>(null!);
 
     if (!ad) return null;
 

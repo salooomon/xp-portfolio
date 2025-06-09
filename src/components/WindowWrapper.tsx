@@ -16,7 +16,7 @@ export const WindowWrapper: React.FC<WindowWrapperProps> = ({
     children,
     icon,
 }) => {
-    const windowRef = useRef<HTMLDivElement>(null);
+    const windowRef = useRef<HTMLDivElement>(null!);
     const { position, updatePosition, handleDrag} = useDynamicCenterPosition();
     const [isPositionCalculated, setIsPositionCalculated] = useState(false);
 
