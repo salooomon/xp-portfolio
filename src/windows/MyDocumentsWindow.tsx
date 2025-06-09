@@ -60,7 +60,7 @@ export const MyDocuments = () => {
                                 <div className="xp-file">
                                     <div className="xp-file-icon">
                                         <img
-                                            src="src/assets/icons/document.ico"
+                                            src="/assets/icons/document.ico"
                                             alt="Project"
                                             className="xp-icon-large"
                                         />

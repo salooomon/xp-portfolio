@@ -41,7 +41,7 @@ export const MyComputer = () => {
                     <details open>
                         <summary>
                             <div className="icon-item">
-                                <img src="src/assets/icons/gear.png" alt="Code" className="icon"/>
+                                <img src="/assets/icons/gear.png" alt="Code" className="icon"/>
                                 Технологии разработки
                             </div>
                         </summary>
@@ -50,7 +50,7 @@ export const MyComputer = () => {
                                 <details open>
                                     <summary>
                                         <div className="icon-item">
-                                            <img src="src/assets/icons/programming-languages.png" alt="Languages"
+                                            <img src="/assets/icons/programming-languages.png" alt="Languages"
                                                  className="icon spin-constant"/>
                                             Языки программирования
                                         </div>
@@ -59,7 +59,7 @@ export const MyComputer = () => {
                                         <li>
                                             <div className="icon-item">
                                                 <div className="icon-spin">
-                                                    <img src="src/assets/icons/javascript.png" alt="JavaScript"
+                                                    <img src="/assets/icons/javascript.png" alt="JavaScript"
                                                          className="icon spin-constant"/>
                                                 </div>
                                                 JavaScript
@@ -68,7 +68,7 @@ export const MyComputer = () => {
                                         <li>
                                             <div className="icon-item">
                                                 <div className="icon-spin">
-                                                    <img src="src/assets/icons/typescript.png" alt="TypeScript"
+                                                    <img src="/assets/icons/typescript.png" alt="TypeScript"
                                                          className="icon spin-constant"/>
                                                 </div>
                                                 TypeScript
@@ -82,7 +82,7 @@ export const MyComputer = () => {
                                 <details open>
                                     <summary>
                                         <div className="icon-item">
-                                            <img src="src/assets/icons/framework.png" alt="Frameworks" className="icon"/>
+                                            <img src="/assets/icons/framework.png" alt="Frameworks" className="icon"/>
                                             Фреймворки
                                         </div>
                                     </summary>
@@ -90,7 +90,7 @@ export const MyComputer = () => {
                                         <li>
                                             <div className="icon-item">
                                                 <div className="icon-spin">
-                                                    <img src="src/assets/icons/react-native.png" alt="React"
+                                                    <img src="/assets/icons/react-native.png" alt="React"
                                                          className="icon spin-constant"/>
                                                 </div>
 
@@ -100,7 +100,7 @@ export const MyComputer = () => {
                                         <li>
                                             <div className="icon-item">
                                                 <div className="icon-spin">
-                                                    <img src="src/assets/icons/vue.png" alt="Vue"
+                                                    <img src="/assets/icons/vue.png" alt="Vue"
                                                          className="icon spin-constant"/>
                                                 </div>
                                                 Vue
@@ -115,7 +115,7 @@ export const MyComputer = () => {
                                     <summary>
                                         <div className="icon-item">
 
-                                            <img src="src/assets/icons/state.png" alt="Libraries" className="icon"/>
+                                            <img src="/assets/icons/state.png" alt="Libraries" className="icon"/>
                                             Библиотеки управления состоянием
                                         </div>
                                     </summary>
@@ -123,7 +123,7 @@ export const MyComputer = () => {
                                         <li>
                                             <div className="icon-item">
                                                 <div className="icon-spin">
-                                                    <img src="src/assets/icons/redux.png" alt="Redux"
+                                                    <img src="/assets/icons/redux.png" alt="Redux"
                                                          className="icon spin-constant"/>
                                                 </div>
                                                 Redux
@@ -132,7 +132,7 @@ export const MyComputer = () => {
                                         <li>
                                             <div className="icon-item">
                                                 <div className="icon-spin">
-                                                    <img src="src/assets/icons/vue.png" alt="Vuex"
+                                                    <img src="/assets/icons/vue.png" alt="Vuex"
                                                          className="icon spin-constant"/>
                                                 </div>
                                                 Vuex
@@ -141,7 +141,7 @@ export const MyComputer = () => {
                                         <li>
                                             <div className="icon-item">
                                                 <div className="icon-spin">
-                                                    <img src="src/assets/icons/pinias.png" alt="Languages"
+                                                    <img src="/assets/icons/pinias.png" alt="Languages"
                                                          className="icon spin-constant"/>
                                                 </div>
                                                 Pinia
@@ -155,7 +155,7 @@ export const MyComputer = () => {
                                 <details open>
                                     <summary>
                                         <div className="icon-item">
-                                            <img src="src/assets/icons/markup.png" alt="Styles" className="icon"/>
+                                            <img src="/assets/icons/markup.png" alt="Styles" className="icon"/>
                                             Стили и разметка
                                         </div>
                                     </summary>
@@ -163,7 +163,7 @@ export const MyComputer = () => {
                                         <li>
                                             <div className="icon-item">
                                                 <div className="icon-spin">
-                                                    <img src="src/assets/icons/css3.png" alt="CSS"
+                                                    <img src="/assets/icons/css3.png" alt="CSS"
                                                          className="icon spin-constant"/>
                                                 </div>
                                                 CSS
@@ -172,7 +172,7 @@ export const MyComputer = () => {
                                         <li>
                                             <div className="icon-item">
                                                 <div className="icon-spin">
-                                                    <img src="src/assets/icons/sass.png" alt="SCSS"
+                                                    <img src="/assets/icons/sass.png" alt="SCSS"
                                                          className="icon spin-constant"/>
                                                 </div>
                                                 SCSS/SASS
@@ -181,7 +181,7 @@ export const MyComputer = () => {
                                         <li>
                                             <div className="icon-item">
                                                 <div className="icon-spin">
-                                                    <img src="src/assets/icons/html5.png" alt="HTML"
+                                                    <img src="/assets/icons/html5.png" alt="HTML"
                                                          className="icon spin-constant"/>
                                                 </div>
                                                 HTML

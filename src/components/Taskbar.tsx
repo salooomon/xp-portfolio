@@ -28,7 +28,7 @@ export const Taskbar: React.FC = () => {
         <div className="taskbar">
             <button className="start-button">
                 <img
-                    src="src/assets/icons/windows-logo-small.png"
+                    src="/assets/icons/windows-logo-small.png"
                     alt="Windows Logo"
                     className="logo"
                 />
@@ -67,7 +67,7 @@ export const Taskbar: React.FC = () => {
             <div className="system-tray">
                 <div className="tray-icons">
                     <img
-                        src="src/assets/icons-mini/ethernet-mini.ico"
+                        src="/assets/icons-mini/ethernet-mini.ico"
                         alt="ethernet"
                         style={{ width: '16px', height: '16px' }}
                     />

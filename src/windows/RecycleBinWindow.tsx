@@ -18,15 +18,15 @@ export const RecycleBin = () => {
         {
             id: "necronomicon",
             title: "Necronomicon.doc",
-            icon: "src/assets/icons/necronomicon.png",
-            iconMini: "src/assets/icons-mini/necronomicon-mini.png",
+            icon: "/assets/icons/necronomicon.png",
+            iconMini: "/assets/icons-mini/necronomicon-mini.png",
             shouldError: Math.random() < 0.5,
         },
         {
             id: "solid-txt",
             title: "SOLID.txt",
-            icon: "src/assets/icons/txt-file-gear.ico",
-            iconMini: "src/assets/icons-mini/temp-file-mini.ico",
+            icon: "/assets/icons/txt-file-gear.ico",
+            iconMini: "/assets/icons-mini/temp-file-mini.ico",
             shouldError: Math.random() < 0.5,
         },
     ];
@@ -44,7 +44,7 @@ export const RecycleBin = () => {
                         <p>Файл <strong>{item.title}</strong> повреждён или недоступен.</p>
                     </div>
                 ),
-                icon: "src/assets/icons-mini/error.ico",
+                icon: "/assets/icons-mini/error.ico",
             });
             return;
         }

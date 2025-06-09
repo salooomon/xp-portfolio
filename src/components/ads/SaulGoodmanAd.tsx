@@ -21,7 +21,7 @@ export const SaulGoodmanAd = () => (
             </div>
 
             <div className="sg-saulImgWrap">
-                <img src='public/saul-goodman.png' alt="Saul Goodman" className="sg-saulImg" />
+                <img src='/assets/icons/saul-goodman.png' alt="Saul Goodman" className="sg-saulImg" />
             </div>
         </div>
 

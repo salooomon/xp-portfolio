@@ -19,8 +19,8 @@ export default function App() {
     const { adWindows } = windowsStore();
     const [virusActive, setVirusActive] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    // Интервал появления рекламы (25000 мс = 25 секунд)
-    useAdBlaster(virusActive, 250000);
+    // Интервал появления рекламы (100000 мс = 1.5 м)
+    useAdBlaster(virusActive, 100000);
 
     useEffect(() => {
         setVirusActive(true);
@@ -46,18 +46,18 @@ export default function App() {
                         <AdWindow key={ad.id} id={ad.id} />
                     ))}
 
-                    <button
-                        style={{
-                            position: 'fixed',
-                            bottom: '60px',
-                            right: '10px',
-                            zIndex: 2000,
-                            padding: '5px 10px'
-                        }}
-                        onClick={() => setVirusActive(!virusActive)}
-                    >
-                        {virusActive ? 'Остановить вирус' : 'Запустить вирус'}
-                    </button>
+                    {/*<button*/}
+                    {/*    style={{*/}
+                    {/*        position: 'fixed',*/}
+                    {/*        bottom: '60px',*/}
+                    {/*        right: '10px',*/}
+                    {/*        zIndex: 2000,*/}
+                    {/*        padding: '5px 10px'*/}
+                    {/*    }}*/}
+                    {/*    onClick={() => setVirusActive(!virusActive)}*/}
+                    {/*>*/}
+                    {/*    {virusActive ? 'Остановить вирус' : 'Запустить вирус'}*/}
+                    {/*</button>*/}
                 </>
             )}
         </>
