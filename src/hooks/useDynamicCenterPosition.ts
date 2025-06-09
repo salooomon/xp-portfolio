@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export const useDynamicCenterPosition = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -13,12 +13,10 @@ export const useDynamicCenterPosition = () => {
         setDimensions({ width, height });
     };
 
-    const handleDrag = (
-        _: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>,
-        data: { x: number; y: number }
-    ) => {
+    const handleDrag = (_: unknown, data: { x: number; y: number }) => {
         setPosition({ x: data.x, y: data.y });
     };
+
     useEffect(() => {
         const handleResize = () => {
             if (dimensions.width > 0 && dimensions.height > 0) {
