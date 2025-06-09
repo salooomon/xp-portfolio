@@ -13,6 +13,7 @@ import { AdWindow } from './components/AdWindow.tsx';
 import { useAdBlaster } from './hooks/useAdBlaster.tsx';
 import { LoadingScreen } from "./windows/LoadingScreen.tsx";
 import {CRTEffect} from "./components/CRTEffect.tsx";
+import {LoveEasterEgg} from "./components/LoveEasterEgg.tsx";
 
 export default function App() {
     const { adWindows } = windowsStore();
@@ -39,6 +40,7 @@ export default function App() {
                     <MyComputer />
                     <MyDocuments />
                     <RecycleBin />
+                    <LoveEasterEgg/>
                     {adWindows.map(ad => (
                         <AdWindow key={ad.id} id={ad.id} />
                     ))}

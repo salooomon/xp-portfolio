@@ -1,0 +1,220 @@
+.sg-container {
+    position: relative;
+    width: 40vw;
+    max-width: 500px;
+    min-width: 500px;
+    background-color: #C4122E;
+    padding: 8px;
+    border-radius: 4px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    box-sizing: border-box;
+    color: #000;
+    overflow: visible;
+}
+
+.sg-topText {
+    text-align: center;
+    color: #FFF;
+    font-weight: 700;
+    font-size: 25px;
+    letter-spacing: 1px;
+    text-shadow:
+            0.35px 0 0 black,
+            -0.35px 0 0 black,
+            0 0.35px 0 black,
+            0 -0.35px 0 black,
+            1px 1px 2px black;
+}
+
+.sg-yellowBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    padding-right: 20px;
+    text-align: start;
+    background-color: #F2C230;
+    border-radius: 3px;
+}
+
+.sg-slogan {
+    font-family: "Brush Script MT", cursive;
+    font-size: 48px;
+    font-style: italic;
+    text-align: center;
+    margin: 0 0 0 10px;
+    color: #000;
+    text-shadow:
+            0.35px 0 0 white,
+            -0.35px 0 0 white,
+            0 0.35px 0 white,
+            0 -0.35px 0 white,
+            1px 1px 2px white;
+}
+
+.name-wrapper {
+    margin-left: 5px;
+}
+
+.sg-name {
+    color: white;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+    text-shadow:
+            0.35px 0 0 #C4122E,
+            -0.35px 0 0 #C4122E,
+            0 0.35px 0 #C4122E,
+            0 -0.35px 0 #C4122E,
+            1px 1px 2px #C4122E;
+}
+
+.sg-title {
+    display: inline-block;
+    font-size: 17px;
+    text-align: center;
+    margin-left: 25px;
+    width: 80%;
+    font-weight: 700;
+    border-bottom: 1px solid black;
+    position: relative;
+    z-index: 1;
+    text-decoration: solid;
+
+    text-shadow:
+            0.35px 0 0 white,
+            -0.35px 0 0 white,
+            0 0.35px 0 white,
+            0 -0.35px 0 white,
+            1px 1px 2px white;
+}
+
+.sg-scales {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: rgba(0,0,0,0.1);
+    z-index: 0;
+}
+
+.number-wrapper {
+    margin-left: 40px;
+}
+
+.sg-phone {
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    text-shadow:
+            0.35px 0 0 #C4122E,
+            -0.35px 0 0 #C4122E,
+            0 0.35px 0 #C4122E,
+            0 -0.35px 0 #C4122E,
+            1px 1px 2px #C4122E;
+}
+
+.sg-callNow {
+    color: black;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+    text-shadow:
+            0.35px 0 0 white,
+            -0.35px 0 0 white,
+            0 0.35px 0 white,
+            0 -0.35px 0 white,
+            1px 1px 2px white;
+}
+
+.sg-saulImgWrap {
+    position: absolute;
+    right: 0;
+    top: 55.5%;
+    transform: translateY(-50%);
+    width: 200px;
+    height: 200px;
+    z-index: 2;
+}
+
+.sg-saulImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sg-bottomText {
+    text-align: center;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow:
+            0.35px 0 0 black,
+            -0.35px 0 0 black,
+            0 0.35px 0 black,
+            0 -0.35px 0 black,
+            1px 1px 2px black;
+}
+
+@media (max-width: 600px) {
+    .sg-container {
+        width: 85vw;
+        min-width: unset;
+        max-width: unset;
+        padding: 5px;
+    }
+
+    .sg-topText {
+        font-size: 20px;
+    }
+
+    .sg-yellowBlock {
+        padding-right: 10px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .sg-slogan {
+        font-size: 32px;
+        margin: 0;
+    }
+
+    .name-wrapper {
+        margin-left: 0;
+    }
+
+    .sg-name {
+        font-size: 24px;
+    }
+
+    .sg-title {
+        font-size: 14px;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .number-wrapper {
+        margin-left: 0;
+    }
+
+    .sg-phone {
+        font-size: 22px;
+    }
+
+    .sg-callNow {
+        font-size: 16px;
+    }
+
+    .sg-saulImgWrap {
+        display: none;
+    }
+
+    .sg-bottomText {
+        font-size: 14px;
+    }
+}

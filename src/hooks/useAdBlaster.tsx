@@ -2,19 +2,29 @@ import { useEffect } from 'react';
 import { windowsStore } from '../store/windowsStore';
 import {DefaultAdContent} from "../components/ads/DefaultAdContent";
 import {FakeAntivirus} from "../components/ads/FakeAntivirus.tsx";
+import {SaulGoodmanAd} from "../components/ads/SaulGoodmanAd.tsx";
+import {SatrialeAd} from "../components/ads/SatrialeAd.tsx";
 const browserIcon = 'src/assets/icons-mini/browser-mini.ico'
 const AD_TEMPLATES = [
     {
         content: <DefaultAdContent />,
         title: 'Срочное сообщение!',
         icon: browserIcon,
-        size: {width: 30, height: 40}
     },
     {
         content: <FakeAntivirus />,
         title: 'Срочное сообщение ВИРУС!',
         icon: browserIcon,
-        size: {width: 40, height: 30}
+    },
+    {
+        content: <SaulGoodmanAd />,
+        title: 'У вас проблемы с законом?',
+        icon: browserIcon,
+    },
+    {
+        content: <SatrialeAd />,
+        title: 'Мясная продукция только у нас!',
+        icon: browserIcon,
     },
 ];
 

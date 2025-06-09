@@ -1,0 +1,50 @@
+.valentine-ad-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.valentine-ad-window {
+    background: pink;
+    border: 3px solid red;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    box-shadow: 0 0 15px red;
+}
+
+.valentine-ad-title {
+    font-size: 1.8rem;
+    color: red;
+    margin-bottom: 10px;
+}
+
+.valentine-ad-message {
+    font-size: 1.2rem;
+    color: darkred;
+    margin-bottom: 15px;
+}
+
+.valentine-ad-close {
+    background: red;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.valentine-ad-close:hover {
+    background: darkred;
+}
+

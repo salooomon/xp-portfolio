@@ -1,0 +1,196 @@
+.satriale-block {
+    position: relative;
+    width: 40vw;
+    max-width: 500px;
+    min-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background:
+            linear-gradient(145deg, #d9c9a3, #fff5d1);
+    padding: 25px 40px 20px;
+    border: 3px solid #8b0000;
+    border-radius: 8px;
+    box-shadow:
+            0 10px 25px rgba(0, 0, 0, 0.4),
+            0 4px 6px rgba(0, 0, 0, 0.2),
+            inset 0 0 15px rgba(139, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.satriale-info {
+    margin-top: 15px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    width: 100%;
+}
+
+.address, .phone {
+    font-size: 16px;
+    color: #333;
+    margin: 4px 0;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.tagline {
+    font-size: 14px;
+    color: #8b0000;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed #8b0000;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.metal-effect {
+    position: relative;
+    padding: 5px 20px;
+    background: linear-gradient(145deg, #c0c0c0, #e0e0e0, #a0a0a0);
+    border-radius: 5px;
+    box-shadow:
+            0 3px 5px rgba(0,0,0,0.3),
+            inset 0 1px 0 rgba(255,255,255,0.5),
+            inset 0 -3px 5px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+    transform: perspective(500px) rotateX(5deg);
+}
+
+.satriale-logo {
+    font-family: 'Brush Script MT', 'Apple Chancery', cursive;
+    font-size: 52px;
+    font-weight: bold;
+    color: #8b0000;
+    text-shadow:
+            2px 2px 3px rgba(0, 0, 0, 0.3),
+            0 0 5px rgba(139, 0, 0, 0.5);
+    margin-bottom: 8px;
+    background: linear-gradient(45deg, #8b0000, #d00, #8b0000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 1px;
+}
+
+.satriale-subtitle {
+    font-family: 'Impact', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #222;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    position: relative;
+    padding: 0 10px;
+}
+
+.satriale-subtitle::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 10%;
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #8b0000, transparent);
+}
+
+.satriale-ribbon {
+    position: relative;
+    display: inline-block;
+    margin: 25px auto 15px;
+    padding: 12px 45px;
+    background: linear-gradient(to bottom, #f0b500, #d9a000, #f0b500);
+    color: #000;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+    border: 3px solid #000;
+    border-radius: 3px;
+    box-shadow:
+            0 3px 8px rgba(0,0,0,0.3),
+            inset 0 2px 3px rgba(255,255,255,0.4),
+            inset 0 -3px 5px rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+    transform: rotate(0deg);
+}
+
+.satriale-ribbon::before,
+.satriale-ribbon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 70px;
+    height: 110%;
+    background: linear-gradient(to bottom, #f0b500, #d9a000, #f0b500);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 30% 50%);
+    z-index: -1;
+    transform: translateY(-50%);
+    border: 3px solid #000;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+}
+
+.satriale-ribbon::before {
+    left: -55px;
+    border-right: none;
+    border-radius: 3px 0 0 3px;
+}
+
+.satriale-ribbon::after {
+    right: -55px;
+    transform: translateY(-50%) scaleX(-1);
+    border-left: none;
+    border-radius: 0 3px 3px 0;
+}
+
+.ribbon-studs {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    right: 5px;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.screw {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #e0e0e0, #808080 80%);
+    border-radius: 50%;
+    box-shadow:
+            0 1px 2px rgba(0,0,0,0.5),
+            inset 0 0 5px rgba(0,0,0,0.7);
+}
+
+.screw::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #222;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+.top-left { top: 10px; left: 10px; }
+.top-right { top: 10px; right: 10px; }
+.bottom-left { bottom: 10px; left: 10px; }
+.bottom-right { bottom: 10px; right: 10px; }
+
+@media (max-width: 600px) {
+    .satriale-block {
+        width: 80vw;
+        min-width: unset;
+        max-width: unset;
+        padding: 5px;
+    }
+    .satriale-ribbon {
+        font-size: 15px;
+    }
+}

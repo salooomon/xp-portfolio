@@ -2,23 +2,19 @@ import  { useState, useEffect } from 'react';
 import '../styles/loading-screen.css'
 
 export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
-    const [progress, setProgress] = useState(0);
     const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setProgress(prev => {
-                if (prev >= 100) {
-                    clearInterval(interval);
-                    setIsVisible(false);
-                    setTimeout(onComplete, 500);
-                    return 100;
-                }
-                return prev + (Math.random() * 5 + 1);
-            });
-        }, 100);
+        const minDuration = 1500;
+        const maxDuration = 3000;
+        const duration = Math.random() * (maxDuration - minDuration) + minDuration;
 
-        return () => clearInterval(interval);
+        const timer = setTimeout(() => {
+            setIsVisible(false);
+            setTimeout(onComplete, 500);
+        }, duration);
+
+        return () => clearTimeout(timer);
     }, [onComplete]);
 
     if (!isVisible) return null;
