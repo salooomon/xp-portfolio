@@ -2,25 +2,33 @@ import { windowsStore } from '../store/windowsStore';
 import '../styles/desctop-icon.css';
 
 interface IProps {
-    id: string;
     title: string;
     icon: string;
     iconMini: string;
+    onClick?: () => void;
+    id?: string;
 }
 
-export const Icon = ({id, title, icon, iconMini} : IProps) => {
+export const Icon = ({ id, title, icon, iconMini, onClick }: IProps) => {
     const { openWindow, focusOrCenterWindow, centerWindow, windows } = windowsStore();
-    const windowState = windows.find(w  => w.id === id);
+    const windowState = windows.find(w => w.id === id);
 
     const handleClick = () => {
-        if (windowState) {
-            if (windowState.minimized) {
-                focusOrCenterWindow(id);
+        if (onClick) {
+            onClick();
+            return;
+        }
+
+        if (id) {
+            if (windowState) {
+                if (windowState.minimized) {
+                    focusOrCenterWindow(id);
+                } else {
+                    centerWindow(id);
+                }
             } else {
-                centerWindow(id);
+                openWindow(id, title, iconMini);
             }
-        } else {
-            openWindow(id, title, iconMini);
         }
     };
 

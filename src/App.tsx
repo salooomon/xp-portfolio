@@ -41,6 +41,7 @@ export default function App() {
                     <MyDocuments />
                     <RecycleBin />
                     <LoveEasterEgg/>
+
                     {adWindows.map(ad => (
                         <AdWindow key={ad.id} id={ad.id} />
                     ))}
