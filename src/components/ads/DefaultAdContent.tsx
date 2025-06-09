@@ -1,3 +1,4 @@
+import '../../styles/ad.css'
 export const DefaultAdContent = () => (
     <div className="ad-content">
         <div style={{ textAlign: 'center', padding: 10 }}>

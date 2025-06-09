@@ -28,7 +28,7 @@ export const MyDocuments = () => {
         <WindowWrapper
             title="Мои документы"
             id="my-documents"
-            icon="src/assets/icons-mini/my-documents-mini.ico"
+            icon="/assets/icons-mini/my-documents-mini.ico"
         >
             <div className="xp-window-content">
                 <div className="xp-toolbar">

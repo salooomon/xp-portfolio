@@ -53,7 +53,7 @@ export const windowsStore = create<WindowStore>((set, get) => ({
 
         const x = (window.innerWidth - width) / 2;
         const y = (window.innerHeight - height) / 2;
-
+        console.log(icon, 'openWindow')
         set((state) => ({
             windows: [...state.windows, {
                 id,

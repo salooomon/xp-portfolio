@@ -54,7 +54,7 @@ export const RecycleBin = () => {
         <WindowWrapper
             title="Корзина"
             id="recycle-bin"
-            icon="src/assets/icons-mini/full-recycle-bin-mini.ico"
+            icon="/assets/icons-mini/full-recycle-bin-mini.ico"
         >
             <div className="xp-window-content">
                 <div className="xp-panel xp-recycle-bin">

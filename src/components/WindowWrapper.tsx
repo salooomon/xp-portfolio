@@ -40,7 +40,6 @@ export const WindowWrapper: React.FC<WindowWrapperProps> = ({
     }, [windowState?.minimized]);
 
     if (!windowState || windowState.minimized) return null;
-
     return (
         <Draggable
             nodeRef={windowRef}

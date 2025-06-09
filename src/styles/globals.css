@@ -10,6 +10,7 @@ html, body, #root {
 }
 
 body {
+    overflow: hidden;
     background: url('../../public/bliss.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: "Microsoft Sans Serif", "Tahoma", sans-serif;

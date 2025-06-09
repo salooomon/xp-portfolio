@@ -21,7 +21,7 @@ export const MyComputer = () => {
         <WindowWrapper
             title="Мой компьютер"
             id="my-computer"
-            icon="src/assets/icons-mini/my-computer-mini.ico"
+            icon="assets/icons-mini/my-computer-mini.ico"
         >
             <div className="xp-section" style={{marginBottom: '20px', padding: '10px', borderBottom: '1px solid #ddd'}}>
                 <h3 style={{color: '#0058e3', marginBottom: '10px', marginTop: '0'}}>Обо мне</h3>
