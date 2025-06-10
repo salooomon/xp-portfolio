@@ -1,27 +1,27 @@
-.ad-window {
+.window-master {
     min-width: 200px;
     max-width: 400px;
     width: auto !important;
     height: auto !important;
 }
 
-.ad-content .title-bar {
+.master-content .title-bar {
     background: linear-gradient(to bottom, #ff4d4d, #cc0000);
     color: white;
 }
 
-.ad-window .title-bar-controls button {
+.window-master .title-bar-controls button {
     background-color: white;
 }
 
-.ad-content {
+.master-content {
     background-color: #ffe6e6;
     border: 1px solid #ff9999;
     padding: 10px;
     overflow: auto;
 }
 
-.ad-content h4 {
+.master-content h4 {
     color: #cc0000;
     margin-top: 0;
 }
@@ -32,7 +32,7 @@
     100% { opacity: 1; }
 }
 
-.ad-window.urgent {
+.window-master.urgent {
     animation: blink 0.5s infinite;
 }
 
@@ -92,14 +92,16 @@
 @media (max-width: 600px) {
     .ad-window {
         width: 80vw;
-        height: 45vh;
+        min-height: 45vh;
+        height: auto;
         min-width: 0;
         max-width: unset;
         padding: 5px;
     }
     .garage-ad-window {
         width: 60vw;
-        height: 28vh;
+        min-height: 28vh;
+        height: auto;
         min-width: 0;
         max-width: unset;
         padding: 5px;

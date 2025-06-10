@@ -174,3 +174,13 @@
     min-width: 60px;
     justify-content: center;
 }
+
+@media (max-width: 600px) {
+    .taskbar-button {
+        min-width: 22px !important;
+    }
+    .taskbar-button-text {
+        display: none;
+    }
+
+}

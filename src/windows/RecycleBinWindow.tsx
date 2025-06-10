@@ -31,7 +31,7 @@ export const RecycleBin = () => {
         },
         {
             id: "txt-file",
-            title: "Другие кандидаты.txt",
+            title: "Кандидаты.txt",
             icon: "/assets/icons/txt-file.ico",
             iconMini: "/assets/icons/txt-file.ico",
             shouldError: Math.random() < 0.5,

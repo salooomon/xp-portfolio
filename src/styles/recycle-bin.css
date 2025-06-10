@@ -66,3 +66,12 @@
 .xp-button-wide {
     padding: 3px 15px;
 }
+
+@media (max-width: 600px) {
+    .xp-bin-item {
+        width: 50px;
+    }
+    .xp-bin-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
