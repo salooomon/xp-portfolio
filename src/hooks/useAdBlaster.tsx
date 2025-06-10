@@ -3,6 +3,7 @@ import { windowsStore } from '../store/windowsStore';
 import {DefaultAdContent} from "../components/ads/DefaultAdContent";
 import {SaulGoodmanAd} from "../components/ads/SaulGoodmanAd.tsx";
 import {SatrialeAd} from "../components/ads/SatrialeAd.tsx";
+import {GarageAd} from "../components/ads/GarageAd.tsx";
 const browserIcon = '/assets/icons-mini/browser-mini.ico'
 const AD_TEMPLATES = [
     {
@@ -18,6 +19,11 @@ const AD_TEMPLATES = [
     {
         content: <SatrialeAd />,
         title: 'Мясная продукция только у нас!',
+        icon: browserIcon,
+    },
+    {
+        content: <GarageAd />,
+        title: 'Продам гараж...',
         icon: browserIcon,
     },
 ];

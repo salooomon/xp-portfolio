@@ -1,27 +1,27 @@
-.window.ad-window {
+.ad-window {
     min-width: 200px;
     max-width: 400px;
     width: auto !important;
     height: auto !important;
 }
 
-.window.ad-window .title-bar {
+.ad-content .title-bar {
     background: linear-gradient(to bottom, #ff4d4d, #cc0000);
     color: white;
 }
 
-.window.ad-window .title-bar-controls button {
+.ad-window .title-bar-controls button {
     background-color: white;
 }
 
-.window.ad-window .window-body.ad-content {
+.ad-content {
     background-color: #ffe6e6;
     border: 1px solid #ff9999;
     padding: 10px;
     overflow: auto;
 }
 
-.ad-content h3 {
+.ad-content h4 {
     color: #cc0000;
     margin-top: 0;
 }
@@ -32,6 +32,76 @@
     100% { opacity: 1; }
 }
 
-.window.ad-window.urgent {
+.ad-window.urgent {
     animation: blink 0.5s infinite;
+}
+
+.garage-ad-window {
+    min-width: 220px;
+    max-width: 400px;
+    background-color: #fff8dc;
+    border: 2px dashed #8b4513;
+    padding: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: blinkGarage 1.5s infinite;
+}
+
+.garage-ad-title {
+    color: #8b0000;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.garage-ad-price {
+    color: green;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.garage-ad-phone {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.garage-ad-btn {
+    background-color: #ffa500;
+    color: black;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.garage-ad-btn:hover {
+    background-color: #ff8c00;
+}
+
+@keyframes blinkGarage {
+    0% { box-shadow: 0 0 5px red; }
+    50% { box-shadow: 0 0 15px red; }
+    100% { box-shadow: 0 0 5px red; }
+}
+
+
+@media (max-width: 600px) {
+    .ad-window {
+        width: 80vw;
+        height: 45vh;
+        min-width: 0;
+        max-width: unset;
+        padding: 5px;
+    }
+    .garage-ad-window {
+        width: 60vw;
+        height: 28vh;
+        min-width: 0;
+        max-width: unset;
+        padding: 5px;
+    }
 }

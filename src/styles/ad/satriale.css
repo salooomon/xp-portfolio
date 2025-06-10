@@ -185,6 +185,7 @@
 @media (max-width: 600px) {
     .satriale-block {
         width: 80vw;
+        height: 45vh;
         min-width: 0;
         max-width: unset;
         padding: 5px;

@@ -164,6 +164,7 @@
 @media (max-width: 600px) {
     .sg-container {
         width: 85vw;
+        height: 55vw;
         min-width: unset;
         max-width: unset;
         padding: 5px;

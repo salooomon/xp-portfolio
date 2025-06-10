@@ -1,7 +1,8 @@
 import '../../styles/ad.css'
+
 export const DefaultAdContent = () => (
-    <div className="ad-content">
-        <div style={{ textAlign: 'center', padding: 10 }}>
+    <div className="ad-window">
+        <div className="ad-content" style={{ textAlign: 'center', padding: 10 }}>
             <h4>ВАШЕМУ САЙТУ НУЖЕН МАСТЕР</h4>
             <p>Немедленно позвоните по номеру:</p>
             <p style={{ fontSize: 24, fontWeight: 'bold', color: 'red' }}>

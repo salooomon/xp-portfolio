@@ -29,6 +29,13 @@ export const RecycleBin = () => {
             iconMini: "/assets/icons-mini/temp-file-mini.ico",
             shouldError: Math.random() < 0.5,
         },
+        {
+            id: "txt-file",
+            title: "Другие кандидаты.txt",
+            icon: "/assets/icons/txt-file.ico",
+            iconMini: "/assets/icons/txt-file.ico",
+            shouldError: Math.random() < 0.5,
+        },
     ];
 
     const handleItemClick = (item: BinItem) => {
