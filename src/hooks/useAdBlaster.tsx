@@ -39,14 +39,26 @@ export const useAdBlaster = (active: boolean, interval = 1500) => {
                 Math.floor(Math.random() * AD_TEMPLATES.length)
                 ];
 
+            const windowWidth = 400; // ожидаемая ширина окна
+            const windowHeight = 300; // ожидаемая высота окна
+
+            const minOffset = 20;          // отступ сверху, слева, справа
+            const minBottomOffset = 100;   // отступ снизу
+
+            const maxX = window.innerWidth - windowWidth - minOffset;
+            const maxY = window.innerHeight - windowHeight - minBottomOffset;
+
+            const position = {
+                x: Math.random() * maxX + minOffset,
+                y: Math.random() * maxY + minOffset
+            };
+
             openAdWindow({
                 ...adTemplate,
-                position: {
-                    x: Math.random() * (window.innerWidth - 400),
-                    y: Math.random() * (window.innerHeight - 300)
-                }
+                position
             });
         };
+
 
 
         openRandomAd();

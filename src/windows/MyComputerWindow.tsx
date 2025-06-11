@@ -23,7 +23,7 @@ export const MyComputer = () => {
             id="my-computer"
             icon="assets/icons-mini/my-computer-mini.ico"
         >
-            <div className="xp-section" style={{marginBottom: '20px', padding: '10px', borderBottom: '1px solid #ddd'}}>
+            <div className="xp-section">
                 <h3 style={{color: '#0058e3', marginBottom: '10px', marginTop: '0'}}>Обо мне</h3>
                 <p style={{marginBottom: '10px'}}>
                     Привет! Меня зовут Кирилл, я frontend-разработчик.

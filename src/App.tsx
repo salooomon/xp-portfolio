@@ -5,13 +5,13 @@ import {useEffect, useState} from "react";
 
 import { Taskbar } from "./components/Taskbar.tsx";
 import {Desktop} from "./desctop/Desktop.tsx";
+import { LoadingScreen } from "./windows/LoadingScreen.tsx";
 import {MyComputer} from "./windows/MyComputerWindow.tsx";
 import {MyDocuments} from "./windows/MyDocumentsWindow.tsx";
 import {RecycleBin} from "./windows/RecycleBinWindow.tsx";
 import { windowsStore } from './store/windowsStore';
 import { AdWindow } from './components/AdWindow.tsx';
 import { useAdBlaster } from './hooks/useAdBlaster.tsx';
-import { LoadingScreen } from "./windows/LoadingScreen.tsx";
 import {CRTEffect} from "./components/CRTEffect.tsx";
 import {LoveEasterEgg} from "./components/LoveEasterEgg.tsx";
 

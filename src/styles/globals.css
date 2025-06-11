@@ -5,7 +5,7 @@ html, body, #root {
     width: 100%;
     overflow-x: hidden;
     overflow-y: hidden;
-    touch-action: manipulation;
+    touch-action: none;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -57,6 +57,9 @@ body {
     overflow: hidden;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
 }
+.window .my-documents {
+    max-height: 70vh !important;
+}
 
 .window-body {
     flex: 1;
@@ -68,7 +71,14 @@ body {
 @media (max-width: 768px) {
     .window {
         max-width: 95vw !important;
-        max-height: 90vh !important;
+        max-height: 85vh !important;
+    }
+
+    .window .my-computer {
+        max-height: 60vh !important;
+    }
+    .window .my-documents {
+        max-height: 60vh !important;
     }
 
     .window-body {

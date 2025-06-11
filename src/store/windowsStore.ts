@@ -7,7 +7,6 @@ interface AdWindow {
     content: React.ReactNode;
     icon: string;
     position: { x: number; y: number };
-    size: { width: number; height: number };
 }
 
 interface Window {
@@ -17,13 +16,12 @@ interface Window {
     minimized: boolean;
     active: boolean;
     position: { x: number; y: number };
-    size: { width: number; height: number };
 }
 
 interface WindowStore {
     windows: Window[];
     activeWindow: string | null;
-    openWindow: (id: string, title: string, icon: string, width?: number, height?: number) => void;
+    openWindow: (id: string, title: string, icon: string) => void;
     closeWindow: (id: string) => void;
     minimizeWindow: (id: string) => void;
     restoreWindow: (id: string) => void;
@@ -42,7 +40,7 @@ export const windowsStore = create<WindowStore>((set, get) => ({
     adWindows: [],
     activeWindow: null,
 
-    openWindow: (id, title, icon, width = 400, height = 300) => {
+    openWindow: (id, title, icon,) => {
         const { windows } = get();
         const existingWindow = windows.find(w => w.id === id);
 
@@ -51,9 +49,8 @@ export const windowsStore = create<WindowStore>((set, get) => ({
             return;
         }
 
-        const x = (window.innerWidth - width) / 2;
-        const y = (window.innerHeight - height) / 2;
-        console.log(icon, 'openWindow')
+        const x = (window.innerWidth) / 2;
+        const y = (window.innerHeight) / 2;
         set((state) => ({
             windows: [...state.windows, {
                 id,
@@ -62,14 +59,13 @@ export const windowsStore = create<WindowStore>((set, get) => ({
                 minimized: false,
                 active: true,
                 position: { x, y },
-                size: { width, height }
             }],
             activeWindow: id
         }));
     },
 
-    closeWindow: (id) => set((state) => ({
-        windows: state.windows.filter((w) => w.id !== id),
+    closeWindow: (id) => set(state => ({
+        windows: state.windows.filter(w => w.id !== id),
         activeWindow: state.activeWindow === id ? null : state.activeWindow
     })),
 
@@ -114,10 +110,8 @@ export const windowsStore = create<WindowStore>((set, get) => ({
         const win = state.windows.find(w => w.id === id);
         if (!win) return;
 
-        const { width, height } = win.size;
-
-        const x = (window.innerWidth - width) / 2;
-        const y = (window.innerHeight - height) / 2;
+        const x = (window.innerWidth) / 2;
+        const y = (window.innerHeight) / 2;
 
         set((state) => ({
             windows: state.windows.map(w =>
@@ -133,15 +127,14 @@ export const windowsStore = create<WindowStore>((set, get) => ({
     },
     openAdWindow: (config = {}) => {
         const defaultAd: AdWindow = {
-            id: `ad-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`,
+            id: config.id || `ad-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`,
             title: config.title || 'Важное сообщение!',
             content: config.content,
-            icon: config.icon || '/icons/warning.png',
+            icon: config.icon || '/assets/icons-mini/error.ico',
             position: config.position || {
                 x: Math.random() * (window.innerWidth - 400),
                 y: Math.random() * (window.innerHeight - 300),
             },
-            size: config.size || { width: 400, height: 300 },
         };
 
         set((state) => ({

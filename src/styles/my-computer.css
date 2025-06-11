@@ -1,3 +1,9 @@
+.xp-section {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
 .icon {
     width: 20px;
     height: 20px;
@@ -91,4 +97,11 @@
 /* Эффект выделения при наведении */
 .icon-item:hover {
     background-color: rgba(0, 120, 215, 0.1);
+}
+
+@media (max-width: 768px) {
+    .xp-section {
+        max-width: 90vw !important;
+        max-height: 90vh !important;
+    }
 }

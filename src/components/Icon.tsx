@@ -18,9 +18,10 @@ export const Icon = ({ id, title, icon, iconMini, onClick }: IProps) => {
             onClick();
             return;
         }
-
+        console.log(windowState);
         if (id) {
             if (windowState) {
+
                 if (windowState.minimized) {
                     focusOrCenterWindow(id);
                 } else {

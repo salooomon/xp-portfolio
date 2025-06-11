@@ -88,7 +88,7 @@ export const WindowWrapper: React.FC<WindowWrapperProps> = ({
                         />
                     </div>
                 </div>
-                <div className="window-body">
+                <div className={`window-body ${id}`}>
                     {children}
                 </div>
             </div>

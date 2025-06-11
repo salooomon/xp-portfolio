@@ -28,11 +28,6 @@ export const AdWindow = ({ id }: { id: string }) => {
                 ref={windowRef}
                 className={`window ${activeWindow === id ? 'active' : ''}`}
                 style={{
-                    width: 'fit-content',
-                    height: 'fit-content',
-                    maxWidth: '80vw',
-                    maxHeight: '80vh',
-                    overflow: 'auto',
                     zIndex: activeWindow === id ? 1000 : 999,
                 }}
                 onClick={() => setActiveWindow(id)}
