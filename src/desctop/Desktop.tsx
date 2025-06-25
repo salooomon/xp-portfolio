@@ -19,7 +19,7 @@ export const Desktop = () => {
                     icon={icon.image}
                     iconMini={icon.iconMini}
                     onClick={icon.id === 'telegram'
-                        ? () => window.open('https://t.me/kirillpopoooov', '_blank')
+                        ? () => window.open('https://t.me/kirillpopoov', '_blank')
                         : undefined}
                 />
             ))}

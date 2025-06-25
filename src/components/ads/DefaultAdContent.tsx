@@ -12,7 +12,7 @@ export const DefaultAdContent = () => (
             <button
                 className="btn"
                 style={{ marginTop: 10 }}
-                onClick={() => window.open('https://t.me/kirillpopoooov')}
+                onClick={() => window.open('https://t.me/kirillpopoov')}
             >
                 Получить помощь сейчас
             </button>

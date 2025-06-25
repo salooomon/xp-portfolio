@@ -9,7 +9,7 @@ export const GarageAd = () => (
         <p className="garage-ad-phone">8-900-123-45-67</p>
         <button
             className="garage-ad-btn"
-            onClick={() => window.open('https://t.me/kirillpopoooov')}
+            onClick={() => window.open('https://t.me/kirillpopoov')}
         >
             Узнать подробности
         </button>
