@@ -19,13 +19,12 @@ export default function App() {
     const { adWindows } = windowsStore();
     const [virusActive, setVirusActive] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    // Интервал появления рекламы (100000 мс = 1.5 м)
-    useAdBlaster(virusActive, 100000);
+    // Интервал появления рекламы (45000 мс = 0.75 м)
+    useAdBlaster(virusActive, 45000);
 
     useEffect(() => {
         setVirusActive(true);
     }, []);
-
 
     return (
         <>
