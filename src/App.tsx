@@ -23,11 +23,11 @@ export default function App() {
     useAdBlaster(virusActive, 45000);
 
     const phrases = [
-        "🔥 СРОЧНО! НЕ УПУСТИ СУПЕР РАЗРАБОТЧИКА! ПИШИ TG @kirillpopoov ПРЯМО СЕЙЧАС! 🔥",
-        "💻 ТОПОВЫЙ РАЗРАБОТЧИК! ХВАТАЙ ПРЕЖДЕ, ЧЕМ УСПЕЕТ УБЕЖАТЬ ! TG @kirillpopoov 💻",
-        "⚠️ ВНИМАНИЕ! РАЗРАБОТЧИК ЭКСТРА-КЛАССА ИЩЕТ РАБОТУ! НЕ СПИ - ПИШИ: TG @kirillpopoov! ⚠️",
-        "🎯 ПОПАЛ В ЯБЛОЧКО? ЭТО Я! ТВОЙ ИДЕАЛЬНЫЙ РАЗРАБОТЧИК! ОТПИШИСЬ: TG @kirillpopoov СРОЧНО! 🎯",
-        "!!! ТОЛЬКО СЕГОДНЯ !!! РАЗРАБОТЧИК 80 lvl ! ЗВОНИТЕ: TG @kirillpopoov",
+        "🔥 СРОЧНО! НЕ УПУСТИ СУПЕР РАЗРАБОТЧИКА! ПИШИ TG @kpovv ПРЯМО СЕЙЧАС! 🔥",
+        "💻 ТОПОВЫЙ РАЗРАБОТЧИК! ХВАТАЙ ПРЕЖДЕ, ЧЕМ УСПЕЕТ УБЕЖАТЬ ! TG @kpovv 💻",
+        "⚠️ ВНИМАНИЕ! РАЗРАБОТЧИК ЭКСТРА-КЛАССА ИЩЕТ РАБОТУ! НЕ СПИ - ПИШИ: TG @kpovv! ⚠️",
+        "🎯 ПОПАЛ В ЯБЛОЧКО? ЭТО Я! ТВОЙ ИДЕАЛЬНЫЙ РАЗРАБОТЧИК! ОТПИШИСЬ: TG @kpovv СРОЧНО! 🎯",
+        "!!! ТОЛЬКО СЕГОДНЯ !!! РАЗРАБОТЧИК 80 lvl ! ЗВОНИТЕ: TG @kpovv",
     ];
 
     useEffect(() => {
