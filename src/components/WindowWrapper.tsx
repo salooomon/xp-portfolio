@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Draggable from 'react-draggable';
 import { windowsStore } from '../store/windowsStore';
-import { useDynamicCenterPosition } from '../hooks/useDynamicCenterPosition';
 
 interface WindowWrapperProps {
     id: string;
@@ -17,7 +16,6 @@ export const WindowWrapper: React.FC<WindowWrapperProps> = ({
     icon,
 }) => {
     const windowRef = useRef<HTMLDivElement>(null!);
-    const { position, updatePosition, handleDrag} = useDynamicCenterPosition();
     const [isPositionCalculated, setIsPositionCalculated] = useState(false);
 
     const {
@@ -25,19 +23,34 @@ export const WindowWrapper: React.FC<WindowWrapperProps> = ({
         activeWindow,
         minimizeWindow,
         closeWindow,
-        setActiveWindow
+        setActiveWindow,
+        setWindowPosition,
+        setWindowSize,
+        centerWindow
     } = windowsStore();
 
     const windowState = windows.find(w => w.id === id);
 
     useEffect(() => {
-        if (windowRef.current && !isPositionCalculated) {
+        if (windowRef.current && windowState) {
             const width = windowRef.current.offsetWidth;
             const height = windowRef.current.offsetHeight;
-            updatePosition(width, height);
-            setIsPositionCalculated(true);
+            const sizeChanged = !windowState.size
+                || windowState.size.width !== width
+                || windowState.size.height !== height;
+
+            if (sizeChanged) {
+                setWindowSize(id, { width, height });
+                if (!windowState.hasBeenDragged) {
+                    centerWindow(id);
+                }
+            }
+
+            if (!isPositionCalculated) {
+                setIsPositionCalculated(true);
+            }
         }
-    }, [windowState?.minimized]);
+    }, [id, windowState, isPositionCalculated, setWindowSize, centerWindow]);
 
     if (!windowState || windowState.minimized) return null;
     return (
@@ -45,10 +58,10 @@ export const WindowWrapper: React.FC<WindowWrapperProps> = ({
             nodeRef={windowRef}
             handle=".title-bar"
             cancel=".title-bar-controls"
-            position={position}
+            position={windowState.position}
             bounds="parent"
             onStart={() => setActiveWindow(id)}
-            onDrag={handleDrag}
+            onDrag={(_, data) => setWindowPosition(id, { x: data.x, y: data.y })}
         >
             <div
                 ref={windowRef}

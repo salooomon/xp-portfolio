@@ -5,7 +5,7 @@ import '../styles/taskbar.css';
 import { windowsStore } from '../store/windowsStore';
 
 export const Taskbar: React.FC = () => {
-    const { windows, adWindows, restoreWindow, setActiveWindow } = windowsStore();
+    const { windows, adWindows, restoreWindow, setActiveWindow, activeWindow } = windowsStore();
     const [time, setTime] = useState(new Date());
 
     useEffect(() => {
@@ -36,32 +36,35 @@ export const Taskbar: React.FC = () => {
             </button>
 
             <div className="taskbar-windows">
-                {visibleWindows.map((window) => (
-                    <button
-                        key={window.id}
-                        className={`taskbar-button ${window.active ? 'active' : ''}`}
-                        onClick={() => {
-                            if ('minimized' in window && window.minimized) {
-                                restoreWindow(window.id);
-                            } else {
-                                setActiveWindow(window.id);
-                            }
-                        }}
-                        aria-label={`Окно ${window.title}`}
-                    >
-                        <div className="taskbar-button-content">
-                            <img
-                                className="taskbar-button-icon"
-                                src={window.icon}
-                                alt=""
-                                width={16}
-                                height={16}
-                                loading="lazy"
-                            />
-                            <span className="taskbar-button-text">{window.title}</span>
-                        </div>
-                    </button>
-                ))}
+                {visibleWindows.map((window) => {
+                    const isActive = activeWindow === window.id;
+                    return (
+                        <button
+                            key={window.id}
+                            className={`taskbar-button ${isActive ? 'active' : ''}`}
+                            onClick={() => {
+                                if ('minimized' in window && window.minimized) {
+                                    restoreWindow(window.id);
+                                } else {
+                                    setActiveWindow(window.id);
+                                }
+                            }}
+                            aria-label={`Окно ${window.title}`}
+                        >
+                            <div className="taskbar-button-content">
+                                <img
+                                    className="taskbar-button-icon"
+                                    src={window.icon}
+                                    alt=""
+                                    width={16}
+                                    height={16}
+                                    loading="lazy"
+                                />
+                                <span className="taskbar-button-text">{window.title}</span>
+                            </div>
+                        </button>
+                    );
+                })}
             </div>
 
             <div className="system-tray">

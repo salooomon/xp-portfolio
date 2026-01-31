@@ -45,12 +45,12 @@ export const useAdBlaster = (active: boolean, interval = 1500) => {
             const minOffset = 20;          // отступ сверху, слева, справа
             const minBottomOffset = 100;   // отступ снизу
 
-            const maxX = window.innerWidth - windowWidth - minOffset;
-            const maxY = window.innerHeight - windowHeight - minBottomOffset;
+            const maxX = Math.max(0, window.innerWidth - windowWidth - minOffset);
+            const maxY = Math.max(0, window.innerHeight - windowHeight - minBottomOffset);
 
             const position = {
-                x: Math.random() * maxX + minOffset,
-                y: Math.random() * maxY + minOffset
+                x: minOffset + Math.random() * maxX,
+                y: minOffset + Math.random() * maxY
             };
 
             openAdWindow({
