@@ -4,7 +4,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 33px;
+    height: var(--xp-taskbar-height);
     background:
     linear-gradient(
         to bottom,
@@ -173,6 +173,14 @@
 }
 
 @media (max-width: 600px) {
+    .taskbar-windows {
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+    }
+    .taskbar-windows::-webkit-scrollbar {
+        display: none;
+    }
     .taskbar-button {
         min-width: 22px !important;
     }

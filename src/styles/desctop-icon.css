@@ -26,3 +26,21 @@
             0 -0.35px 0 black,
             1px 1px 2px black;
 }
+
+@media (max-width: 600px) {
+    .desktop-icon {
+        width: 2.6rem;
+        margin: 0.5rem;
+    }
+
+    .icon-img {
+        width: 2.2rem;
+        height: 2.2rem;
+    }
+
+    .icon-title {
+        font-size: 11px;
+        max-width: 3.5rem;
+        word-break: break-word;
+    }
+}

@@ -109,3 +109,14 @@
     padding: 2px 6px;
     font-size: 11px;
 }
+
+@media (max-width: 600px) {
+    .xp-window-content {
+        padding: 8px;
+    }
+
+    .xp-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 10px;
+    }
+}

@@ -1,5 +1,5 @@
 import { windowsStore } from '../store/windowsStore';
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
 
 export const AdWindow = ({ id }: { id: string }) => {
@@ -12,8 +12,27 @@ export const AdWindow = ({ id }: { id: string }) => {
 
     const ad = adWindows.find(a => a.id === id);
     const windowRef = useRef<HTMLDivElement>(null!);
+    const [position, setPosition] = useState(ad?.position ?? { x: 0, y: 0 });
 
     if (!ad) return null;
+
+    useEffect(() => {
+        if (!windowRef.current) return;
+
+        const width = windowRef.current.offsetWidth;
+        const height = windowRef.current.offsetHeight;
+        const minOffset = 20;
+        const minBottomOffset = 100;
+        const maxX = Math.max(0, window.innerWidth - width - minOffset);
+        const maxY = Math.max(0, window.innerHeight - height - minBottomOffset);
+
+        const clampedX = Math.min(Math.max(ad.position.x, minOffset), minOffset + maxX);
+        const clampedY = Math.min(Math.max(ad.position.y, minOffset), minOffset + maxY);
+
+        if (clampedX !== position.x || clampedY !== position.y) {
+            setPosition({ x: clampedX, y: clampedY });
+        }
+    }, [ad.position.x, ad.position.y, position.x, position.y]);
 
     return (
         <Draggable
@@ -21,8 +40,9 @@ export const AdWindow = ({ id }: { id: string }) => {
             handle=".title-bar"
             cancel=".title-bar-controls"
             bounds="parent"
-            defaultPosition={ad.position}
+            position={position}
             onStart={() => setActiveWindow(id)}
+            onDrag={(_, data) => setPosition({ x: data.x, y: data.y })}
         >
             <div
                 ref={windowRef}
