@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import React from 'react';
 import 'xp.css/dist/XP.css';
 import '../styles/taskbar.css';
-import { windowsStore } from '../store/windowsStore';
+import { windowsStore, TASKBAR_WINDOW_LIMIT } from '../store/windowsStore';
 
 export const Taskbar: React.FC = () => {
     const {
@@ -96,7 +96,7 @@ export const Taskbar: React.FC = () => {
             active: false
         }))
     ];
-    const visibleWindows = allWindows.slice(0, 5);
+    const visibleWindows = allWindows.slice(0, TASKBAR_WINDOW_LIMIT);
 
     return (
         <div className="taskbar">

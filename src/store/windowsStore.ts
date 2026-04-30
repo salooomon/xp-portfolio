@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import React from "react";
 
+export const TASKBAR_WINDOW_LIMIT = 5;
+
 interface AdWindow {
     id: string;
     title: string;
@@ -152,6 +154,12 @@ export const windowsStore = create<WindowStore>((set, get) => ({
         return get().windows.find(w => w.id === id);
     },
     openAdWindow: (config = {}) => {
+        const { windows, adWindows } = get();
+
+        if (windows.length + adWindows.length >= TASKBAR_WINDOW_LIMIT) {
+            return;
+        }
+
         const windowWidth = 400;
         const windowHeight = 300;
         const minOffset = 20;
