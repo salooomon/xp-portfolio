@@ -1,17 +1,90 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import React from 'react';
 import 'xp.css/dist/XP.css';
 import '../styles/taskbar.css';
 import { windowsStore } from '../store/windowsStore';
 
 export const Taskbar: React.FC = () => {
-    const { windows, adWindows, restoreWindow, setActiveWindow, activeWindow } = windowsStore();
+    const {
+        windows,
+        adWindows,
+        restoreWindow,
+        setActiveWindow,
+        activeWindow,
+        openWindow,
+        focusOrCenterWindow,
+        centerWindow
+    } = windowsStore();
     const [time, setTime] = useState(new Date());
+    const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
+    const startMenuRef = useRef<HTMLDivElement | null>(null);
+
+    const startMenuItems = [
+        { id: 'my-computer', title: 'Мой компьютер', icon: '/assets/icons-mini/my-computer-mini.ico' },
+        { id: 'my-documents', title: 'Мои документы', icon: '/assets/icons-mini/my-documents-mini.ico' },
+        { id: 'telegram', title: 'Телеграм', icon: '/assets/icons/telegram-48.png' }
+    ] as const;
 
     useEffect(() => {
         const timer = setInterval(() => setTime(new Date()), 60000);
         return () => clearInterval(timer);
     }, []);
+
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+            if (!startMenuRef.current) {
+                return;
+            }
+
+            if (!startMenuRef.current.contains(event.target as Node)) {
+                setIsStartMenuOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleOutsideClick);
+        return () => document.removeEventListener('mousedown', handleOutsideClick);
+    }, []);
+
+    useEffect(() => {
+        const handleEscape = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setIsStartMenuOpen(false);
+            }
+        };
+
+        document.addEventListener('keydown', handleEscape);
+        return () => document.removeEventListener('keydown', handleEscape);
+    }, []);
+
+    const openDesktopWindow = (id: string, title: string, icon: string) => {
+        const windowState = windows.find(w => w.id === id);
+
+        if (windowState) {
+            if (windowState.minimized) {
+                focusOrCenterWindow(id);
+            } else {
+                centerWindow(id);
+            }
+            return;
+        }
+
+        openWindow(id, title, icon);
+    };
+
+    const handleStartMenuItemClick = (id: (typeof startMenuItems)[number]['id']) => {
+        if (id === 'telegram') {
+            window.open('https://t.me/kpovv', '_blank');
+            setIsStartMenuOpen(false);
+            return;
+        }
+
+        const item = startMenuItems.find(menuItem => menuItem.id === id);
+        if (item) {
+            openDesktopWindow(item.id, item.title, item.icon);
+        }
+
+        setIsStartMenuOpen(false);
+    };
 
     const allWindows = [
         ...windows,
@@ -24,16 +97,47 @@ export const Taskbar: React.FC = () => {
         }))
     ];
     const visibleWindows = allWindows.slice(0, 5);
+
     return (
         <div className="taskbar">
-            <button className="start-button">
-                <img
-                    src="/assets/icons/windows-logo-small.png"
-                    alt="Windows Logo"
-                    className="logo"
-                />
-                <span style={{ marginRight: '5px' }}>ПУСК</span>
-            </button>
+            <div className="start-menu-wrapper" ref={startMenuRef}>
+                <button
+                    className={`start-button ${isStartMenuOpen ? 'open' : ''}`}
+                    onClick={() => setIsStartMenuOpen((prev) => !prev)}
+                    aria-expanded={isStartMenuOpen}
+                    aria-haspopup="menu"
+                    aria-label="Открыть меню Пуск"
+                >
+                    <img
+                        src="/assets/icons/windows-logo-small.png"
+                        alt="Windows Logo"
+                        className="logo"
+                    />
+                    <span style={{ marginRight: '5px' }}>ПУСК</span>
+                </button>
+
+                {isStartMenuOpen && (
+                    <div className="start-menu" role="menu" aria-label="Меню Пуск">
+                        {startMenuItems.map((item) => (
+                            <button
+                                key={item.id}
+                                className="start-menu-item"
+                                role="menuitem"
+                                onClick={() => handleStartMenuItemClick(item.id)}
+                            >
+                                <img
+                                    src={item.icon}
+                                    alt=""
+                                    className="start-menu-item-icon"
+                                    width={20}
+                                    height={20}
+                                />
+                                <span>{item.title}</span>
+                            </button>
+                        ))}
+                    </div>
+                )}
+            </div>
 
             <div className="taskbar-windows">
                 {visibleWindows.map((window) => {
