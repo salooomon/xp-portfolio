@@ -67,6 +67,23 @@
     padding: 3px 15px;
 }
 
+.xp-bin-file-window {
+    min-width: 260px;
+}
+
+.xp-bin-file-window-title {
+    margin: 0 0 10px;
+    color: #0058e3;
+    font-size: 15px;
+}
+
+.xp-bin-file-window-text p {
+    margin: 0 0 6px;
+    color: #333;
+    font-size: 12px;
+    line-height: 1.35;
+}
+
 @media (max-width: 600px) {
     .xp-bin-item {
         width: 50px;

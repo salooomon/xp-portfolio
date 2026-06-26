@@ -11,7 +11,7 @@ export const DefaultAdContent = () => (
             <p>Наши специалисты помогут вам!</p>
             <button
                 className="btn"
-                style={{ marginTop: 10 }}
+                style={{ marginTop: 10, color: 'black'}}
                 onClick={() => window.open('https://t.me/kpovv')}
             >
                 Получить помощь сейчас
