@@ -1,0 +1,48 @@
+.blue-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 14px 14px 0;
+    background: #000080;
+    color: #ffffff;
+    cursor: none;
+}
+
+.blue-screen__text {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: inherit;
+    background: transparent;
+    white-space: pre-wrap;
+    text-justify: inter-word;
+    overflow-wrap: normal;
+    font-size: 2rem;
+    line-height: 1.08;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+@media (max-width: 700px) {
+    .blue-screen {
+        padding: 10px 6px 0;
+    }
+
+    .blue-screen__text {
+        font-size: 11px;
+        line-height: 1.12;
+    }
+}
+
+.pixel-death-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+}

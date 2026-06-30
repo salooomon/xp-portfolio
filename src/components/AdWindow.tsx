@@ -11,13 +11,12 @@ export const AdWindow = ({ id }: { id: string }) => {
     } = windowsStore();
 
     const ad = adWindows.find(a => a.id === id);
+    const adPosition = ad?.position;
     const windowRef = useRef<HTMLDivElement>(null!);
-    const [position, setPosition] = useState(ad?.position ?? { x: 0, y: 0 });
-
-    if (!ad) return null;
+    const [position, setPosition] = useState(adPosition ?? { x: 0, y: 0 });
 
     useEffect(() => {
-        if (!windowRef.current) return;
+        if (!adPosition || !windowRef.current) return;
 
         const width = windowRef.current.offsetWidth;
         const height = windowRef.current.offsetHeight;
@@ -26,13 +25,15 @@ export const AdWindow = ({ id }: { id: string }) => {
         const maxX = Math.max(0, window.innerWidth - width - minOffset);
         const maxY = Math.max(0, window.innerHeight - height - minBottomOffset);
 
-        const clampedX = Math.min(Math.max(ad.position.x, minOffset), minOffset + maxX);
-        const clampedY = Math.min(Math.max(ad.position.y, minOffset), minOffset + maxY);
+        const clampedX = Math.min(Math.max(adPosition.x, minOffset), minOffset + maxX);
+        const clampedY = Math.min(Math.max(adPosition.y, minOffset), minOffset + maxY);
 
         if (clampedX !== position.x || clampedY !== position.y) {
             setPosition({ x: clampedX, y: clampedY });
         }
-    }, [ad.position.x, ad.position.y, position.x, position.y]);
+    }, [adPosition, position.x, position.y]);
+
+    if (!ad) return null;
 
     return (
         <Draggable

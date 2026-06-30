@@ -122,6 +122,21 @@
     background: linear-gradient(to bottom, #1f69d8 0%, #2f80f7 100%);
 }
 
+.start-menu-separator {
+    height: 1px;
+    margin: 6px 0;
+    background: #c7d7ef;
+    border-bottom: 1px solid #ffffff;
+}
+
+.start-menu-shutdown {
+    color: #7a1b0c;
+}
+
+.start-menu-shutdown:hover {
+    color: #ffffff;
+}
+
 .start-menu-item-icon {
     flex-shrink: 0;
     object-fit: contain;

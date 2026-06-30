@@ -9,6 +9,7 @@ import { CRTEffect } from "./components/CRTEffect.tsx";
 import { LoveEasterEgg } from "./components/LoveEasterEgg.tsx";
 import { Desktop } from "./desctop/Desktop.tsx";
 import { LoadingScreen } from "./windows/LoadingScreen.tsx";
+import { BlueScreen } from "./windows/BlueScreen.tsx";
 import { MyComputer } from "./windows/MyComputerWindow.tsx";
 import { MyDocuments } from "./windows/MyDocumentsWindow.tsx";
 import { RecycleBin } from "./windows/RecycleBinWindow.tsx";
@@ -19,6 +20,7 @@ export default function App() {
     const { adWindows } = windowsStore();
     const [virusActive, setVirusActive] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [isBlueScreenActive, setIsBlueScreenActive] = useState(false);
     // Интервал появления рекламы (45000 мс = 0.75 м)
     useAdBlaster(virusActive, 45000);
 
@@ -34,6 +36,14 @@ export default function App() {
         setVirusActive(true);
     }, []);
 
+    const handleShutdown = () => {
+        setVirusActive(false);
+        setIsBlueScreenActive(true);
+    };
+
+    if (isBlueScreenActive) {
+        return <BlueScreen />;
+    }
 
     return (
         <>
@@ -52,7 +62,7 @@ export default function App() {
                     />
 
                     <Desktop/>
-                    <Taskbar/>
+                    <Taskbar onShutdown={handleShutdown}/>
 
                     <MyComputer />
                     <MyDocuments />

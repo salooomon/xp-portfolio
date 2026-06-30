@@ -4,7 +4,11 @@ import 'xp.css/dist/XP.css';
 import '../styles/taskbar.css';
 import { windowsStore, TASKBAR_WINDOW_LIMIT } from '../store/windowsStore';
 
-export const Taskbar: React.FC = () => {
+interface TaskbarProps {
+    onShutdown: () => void;
+}
+
+export const Taskbar: React.FC<TaskbarProps> = ({ onShutdown }) => {
     const {
         windows,
         adWindows,
@@ -86,6 +90,11 @@ export const Taskbar: React.FC = () => {
         setIsStartMenuOpen(false);
     };
 
+    const handleShutdownClick = () => {
+        setIsStartMenuOpen(false);
+        onShutdown();
+    };
+
     const allWindows = [
         ...windows,
         ...adWindows.map(ad => ({
@@ -135,6 +144,24 @@ export const Taskbar: React.FC = () => {
                                 <span>{item.title}</span>
                             </button>
                         ))}
+
+                        <div className="start-menu-separator" aria-hidden="true" />
+
+                        <button
+                            className="start-menu-item start-menu-shutdown"
+                            role="menuitem"
+                            onClick={handleShutdownClick}
+                            aria-label="Выключить компьютер"
+                        >
+                            <img
+                                src="/assets/icons-mini/error.ico"
+                                alt=""
+                                className="start-menu-item-icon"
+                                width={20}
+                                height={20}
+                            />
+                            <span>Выключить компьютер</span>
+                        </button>
                     </div>
                 )}
             </div>

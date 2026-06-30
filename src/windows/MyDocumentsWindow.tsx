@@ -39,7 +39,7 @@ export const MyDocuments = () => {
                             rel="noopener noreferrer"
                             className="xp-link"
                         >
-                            Мой gitHub
+                            Мой GitHub
                         </a>
 
                     </button>
