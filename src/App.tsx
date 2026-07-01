@@ -17,10 +17,9 @@ import { useAdBlaster } from './hooks/useAdBlaster.tsx';
 import { windowsStore } from './store/windowsStore';
 
 export default function App() {
-    const { adWindows } = windowsStore();
+    const { adWindows, sessionId, crash, reboot, powerState } = windowsStore();
+
     const [virusActive, setVirusActive] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isBlueScreenActive, setIsBlueScreenActive] = useState(false);
     // Интервал появления рекламы (45000 мс = 0.75 м)
     useAdBlaster(virusActive, 45000);
 
@@ -33,60 +32,52 @@ export default function App() {
     ];
 
     useEffect(() => {
+        reboot()
         setVirusActive(true);
     }, []);
 
     const handleShutdown = () => {
-        setVirusActive(false);
-        setIsBlueScreenActive(true);
+        crash()
     };
+    
+    function DesktopSession() {
+        return (
+            <>
+                <CRTEffect/>
+                    <>
+                        <Marquee
+                            phrases={phrases}
+                            backgroundColor="#00a000"
+                            textColor="black"
+                            speed={100}
+                            height={16}
+                            fontSize={13}
+                        />
 
-    if (isBlueScreenActive) {
+                        <Desktop />
+                        <Taskbar onShutdown={handleShutdown}/>
+
+                        <MyComputer />
+                        <MyDocuments />
+                        <RecycleBin />
+                        <LoveEasterEgg/>
+
+                        {adWindows.map(ad => (
+                            <AdWindow key={ad.id} id={ad.id} />
+                        ))}
+                    </>
+            </>
+        )
+    }
+
+    if (powerState === "bsod") {
         return <BlueScreen />;
     }
 
-    return (
-        <>
-            <CRTEffect/>
-            {isLoading ? (
-                <LoadingScreen onComplete={() => setIsLoading(false)} />
-            ) : (
-                <>
-                    <Marquee
-                        phrases={phrases}
-                        backgroundColor="#00a000"
-                        textColor="black"
-                        speed={100}
-                        height={16}
-                        fontSize={13}
-                    />
+    if (powerState === "booting") {
+        return <LoadingScreen />;
+    }
 
-                    <Desktop/>
-                    <Taskbar onShutdown={handleShutdown}/>
 
-                    <MyComputer />
-                    <MyDocuments />
-                    <RecycleBin />
-                    <LoveEasterEgg/>
-
-                    {adWindows.map(ad => (
-                        <AdWindow key={ad.id} id={ad.id} />
-                    ))}
-
-                    {/*<button*/}
-                    {/*    style={{*/}
-                    {/*        position: 'fixed',*/}
-                    {/*        bottom: '60px',*/}
-                    {/*        right: '10px',*/}
-                    {/*        zIndex: 2000,*/}
-                    {/*        padding: '5px 10px'*/}
-                    {/*    }}*/}
-                    {/*    onClick={() => setVirusActive(!virusActive)}*/}
-                    {/*>*/}
-                    {/*    {virusActive ? 'Остановить вирус' : 'Запустить вирус'}*/}
-                    {/*</button>*/}
-                </>
-            )}
-        </>
-    );
+    return <DesktopSession key={sessionId} />
 }

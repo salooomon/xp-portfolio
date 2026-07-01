@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState} from 'react';
 import { PixelDeathEffect } from './PixelDeathEffect';
+
 import '../styles/blue-screen.css';
 
 const blueScreenText = `A problem has been detected and Windows has been shut down to prevent damage
@@ -33,20 +34,10 @@ Technical information:
 export const BlueScreen = () => {
     const screenRef = useRef<HTMLDivElement>(null);
     const [onViewPixelDeathEffect, setViewPixelDeathEffect] = useState(false)
-    const [shouldReload, setShouldReload] = useState(false)
-
-    useEffect(() => {
-        const timerOnReload = setInterval(() => {
-            window.location.reload();
-        }, 3000)
-        return () => clearInterval(timerOnReload)
-
-    }, [shouldReload]);
 
     useEffect(() => {
         const timer = setInterval(() => {
             setViewPixelDeathEffect(true);
-            setShouldReload(true)
         }, 2000)
         return () => clearInterval(timer)
     },[])

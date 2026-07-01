@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import React from "react";
 
 export const TASKBAR_WINDOW_LIMIT = 5;
+type PowerState = "booting" | "running" | "bsod" | "shutdown";
 
 interface AdWindow {
     id: string;
@@ -39,12 +40,39 @@ interface WindowStore {
     openAdWindow: (config?: Partial<AdWindow>) => void;
     closeAdWindow: (id: string) => void;
     closeAllAds: () => void;
+
+    powerState: PowerState;
+    sessionId: number;
+
+    crash: () => void;
+    reboot: () => void;
+    finishBoot: () => void;
 }
 
 export const windowsStore = create<WindowStore>((set, get) => ({
     windows: [],
     adWindows: [],
     activeWindow: null,
+    powerState: "running",
+    sessionId: 0,
+
+    crash: () => {
+        set({ powerState: "bsod" })
+        setTimeout(() => {get().reboot()}, 4000);
+    },
+
+    reboot: () => {
+        set({
+            powerState: "booting",
+            sessionId: get().sessionId + 1,
+        });
+
+        setTimeout(() => {set({ powerState: "running" })}, 3000);
+    },
+
+    finishBoot: () => {
+        set({ powerState: "running" })
+    },
 
     openWindow: (id, title, icon,) => {
         const { windows } = get();
@@ -188,4 +216,6 @@ export const windowsStore = create<WindowStore>((set, get) => ({
     })),
 
     closeAllAds: () => set({ adWindows: [] })
+
+
 }));
